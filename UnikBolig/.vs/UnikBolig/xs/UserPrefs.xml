@@ -1,24 +1,32 @@
 ﻿<Properties StartupConfiguration="{47618C5A-9C85-43EA-BCF4-E81A36C79C49}|Default">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Application/Class1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/UnitTest1.cs">
     <Files>
       <File FileName="UnikBolig.Application/Class1.cs" Line="5" Column="24" />
+      <File FileName="Tests/UnitTest1.cs" Line="8" Column="15" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UnikBolig" expanded="True">
+            <Node name="Tests" expanded="True">
+              <Node name="UnitTest1.cs" selected="True" />
+            </Node>
             <Node name="UnikBolig.Api" expanded="True" />
             <Node name="UnikBolig.Application" expanded="True" />
             <Node name="UnikBolig.Domain" expanded="True" />
-            <Node name="UnikBolig.Infrastructure" expanded="True">
-              <Node name="Dependencies" selected="True" />
-            </Node>
+            <Node name="UnikBolig.Infrastructure" expanded="True" />
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="UnikBolig" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Tests FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
