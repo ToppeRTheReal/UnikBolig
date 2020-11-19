@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikBolig.Api", "UnikBolig.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikBolig.Application", "UnikBolig.Application\UnikBolig.Application.csproj", "{AD779C70-0B34-401D-BF3E-FE18FC56A271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikBolig.Domain", "UnikBolig.Domain\UnikBolig.Domain.csproj", "{B50BC8CE-E0F7-4DFD-8C50-D5AF1933A42B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikBolig.Models", "UnikBolig.Domain\UnikBolig.Models.csproj", "{B50BC8CE-E0F7-4DFD-8C50-D5AF1933A42B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikBolig.Domain.Test", "UnikBolig.Domain.Test\UnikBolig.Domain.Test.csproj", "{EB1238B1-1C5B-4A23-8B1B-B5448C90A98E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikBolig.Infrastructure", "UnikBolig.Infrastructure\UnikBolig.Infrastructure.csproj", "{6EAF75B3-7829-4C27-82E1-0D9CD5DB407B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikBolig.DataAccess", "UnikBolig.Infrastructure\UnikBolig.DataAccess.csproj", "{6EAF75B3-7829-4C27-82E1-0D9CD5DB407B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{C4B3CC31-6F6D-4A02-B4BD-F346B0C227FD}"
 EndProject
