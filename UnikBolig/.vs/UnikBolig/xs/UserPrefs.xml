@@ -1,25 +1,27 @@
 ﻿<Properties StartupConfiguration="{47618C5A-9C85-43EA-BCF4-E81A36C79C49}|Default">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Infrastructure/Repository/TokenRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Api/Controllers/UserController.cs">
     <Files>
-      <File FileName="UnikBolig.Infrastructure/Repository/IUserRepository.cs" Line="9" Column="9" />
-      <File FileName="UnikBolig.Infrastructure/Repository/UserRepository.cs" Line="85" Column="10" />
-      <File FileName="UnikBolig.Domain/User.cs" Line="4" Column="18" />
-      <File FileName="UnikBolig.Infrastructure/Repository/Intefaces/ITokenRepository.cs" Line="8" Column="6" />
-      <File FileName="UnikBolig.Infrastructure/Repository/TokenRepository.cs" Line="3" Column="1" />
+      <File FileName="UnikBolig.Infrastructure/Repository/UserRepository.cs" Line="27" Column="25" />
+      <File FileName="Tests/UnitTest1.cs" Line="18" Column="26" />
+      <File FileName="UnikBolig.Application/UserHandler.cs" Line="9" Column="21" />
+      <File FileName="UnikBolig.Infrastructure/Repository/TokenRepository.cs" Line="19" Column="21" />
+      <File FileName="UnikBolig.Api/Controllers/UserController.cs" Line="4" Column="32" />
+      <File FileName="UnikBolig.Api/Controllers/WeatherForecastController.cs" Line="12" Column="60" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UnikBolig" expanded="True">
             <Node name="Tests" expanded="True" />
-            <Node name="UnikBolig.Api" expanded="True" />
+            <Node name="UnikBolig.Api" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="UserController.cs" selected="True" />
+              </Node>
+            </Node>
             <Node name="UnikBolig.Application" expanded="True" />
             <Node name="UnikBolig.DataAccess" expanded="True">
-              <Node name="Repository" expanded="True">
-                <Node name="Intefaces" expanded="True" />
-                <Node name="TokenRepository.cs" selected="True" />
-              </Node>
+              <Node name="Repository" expanded="True" />
             </Node>
             <Node name="UnikBolig.Models" expanded="True" />
           </Node>
@@ -27,11 +29,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Tests FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/thomasclausen/Documents/GitHub/UnikBolig/UnikBolig/UnikBolig.Infrastructure/Repository/UserRepository.cs" relfile="UnikBolig.Infrastructure/Repository/UserRepository.cs" line="21" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

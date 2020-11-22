@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\UnikBolig.Application\UnikBolig.Application.csproj" />
     <ProjectReference Include="..\UnikBolig.Domain\UnikBolig.Models.csproj" />
   </ItemGroup>
 

@@ -11,9 +11,9 @@ namespace UnikBolig.DataAccess.Repository
         private DataAccess Context;
         private bool IsDisposed = false;
 
-        public UserRepository(DataAccess _Context)
+        public UserRepository(DataAccess data)
         {
-            this.Context = _Context;
+            this.Context = data;
         }
 
         public void Add(UserModel User)
@@ -23,6 +23,9 @@ namespace UnikBolig.DataAccess.Repository
                 throw new Exception("User already exists");
 
             Context.Users.Add(User);
+            Context.SaveChanges();
+            var TokenRepo = new TokenRepository(this.Context);
+            TokenRepo.Add(User.ID);
         }
 
         public void Delete(UserModel User)

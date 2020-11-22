@@ -13,4 +13,9 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UnikBolig.Application\UnikBolig.Application.csproj" />
+    <ProjectReference Include="..\UnikBolig.Domain\UnikBolig.Models.csproj" />
+    <ProjectReference Include="..\UnikBolig.Infrastructure\UnikBolig.DataAccess.csproj" />
+  </ItemGroup>
 </Project>

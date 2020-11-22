@@ -9,11 +9,11 @@ namespace UnikBolig.DataAccess.Repository
     public class TokenRepository : ITokenRepository
     {
 
-        private DataAccess Context;
+        private DataAccess Context = new DataAccess();
 
-        public TokenRepository(DataAccess _Context)
+        public TokenRepository(DataAccess data)
         {
-            this.Context = _Context;
+            Context = data;
         }
 
         public void Add(Guid UserID)
@@ -57,6 +57,8 @@ namespace UnikBolig.DataAccess.Repository
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        private Boolean IsDisposed;
 
         public virtual void Dispose(bool disposing)
         {
