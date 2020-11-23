@@ -42,6 +42,12 @@ namespace UnikBolig.DataAccess.Repository
             Context.Tokens.Remove(token);
         }
 
+        public UserModel GetUserByEmail(string Email)
+        {
+            var User = Context.Users.Where(x => x.Email == Email).FirstOrDefault();
+            return User;
+        }
+
         public UserModel GetUserByID(Guid ID)
         {
             return Context.Users.Where(x => x.ID == ID).FirstOrDefault();

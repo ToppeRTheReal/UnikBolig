@@ -4,6 +4,9 @@
     <ProjectReference Include="..\UnikBolig.Application\UnikBolig.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Response\" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>

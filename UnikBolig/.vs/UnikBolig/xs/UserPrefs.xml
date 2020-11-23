@@ -1,13 +1,11 @@
 ﻿<Properties StartupConfiguration="{47618C5A-9C85-43EA-BCF4-E81A36C79C49}|Default">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Api/Controllers/UserController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Infrastructure/Repository/UserRepository.cs">
     <Files>
-      <File FileName="UnikBolig.Infrastructure/Repository/UserRepository.cs" Line="27" Column="25" />
-      <File FileName="Tests/UnitTest1.cs" Line="18" Column="26" />
-      <File FileName="UnikBolig.Application/UserHandler.cs" Line="9" Column="21" />
-      <File FileName="UnikBolig.Infrastructure/Repository/TokenRepository.cs" Line="19" Column="21" />
-      <File FileName="UnikBolig.Api/Controllers/UserController.cs" Line="4" Column="32" />
-      <File FileName="UnikBolig.Api/Controllers/WeatherForecastController.cs" Line="12" Column="60" />
+      <File FileName="UnikBolig.Application/UserHandler.cs" Line="47" Column="1" />
+      <File FileName="UnikBolig.Api/Controllers/UserController.cs" Line="43" Column="35" />
+      <File FileName="UnikBolig.Infrastructure/Repository/UserRepository.cs" Line="48" Column="25" />
+      <File FileName="UnikBolig.Infrastructure/Repository/TokenRepository.cs" Line="14" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,9 +13,8 @@
           <Node name="UnikBolig" expanded="True">
             <Node name="Tests" expanded="True" />
             <Node name="UnikBolig.Api" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="UserController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Response" expanded="True" />
             </Node>
             <Node name="UnikBolig.Application" expanded="True" />
             <Node name="UnikBolig.DataAccess" expanded="True">
@@ -32,9 +29,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/thomasclausen/Documents/GitHub/UnikBolig/UnikBolig/UnikBolig.Infrastructure/Repository/UserRepository.cs" relfile="UnikBolig.Infrastructure/Repository/UserRepository.cs" line="21" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

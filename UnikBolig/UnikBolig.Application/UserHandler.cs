@@ -30,6 +30,26 @@ namespace UnikBolig.Application
             }
         }
 
+        public TokenModel Login(string Email, string Password)
+        {
+            if(Email == string.Empty || Password == string.Empty)
+                throw new Exception("Username or password were left empty");
+
+            UserRepository Repo = new UserRepository(new DataAccess.DataAccess());
+            var User = Repo.GetUserByEmail(Email);
+
+            if (User == null)
+                throw new Exception("User not found");
+
+            var TokenRepo = new TokenRepository(new DataAccess.DataAccess());
+            TokenRepo.UpdateTokenFromUserID(User.ID);
+            TokenRepo.Save();
+
+            TokenModel Token = TokenRepo.GetTokenByUserID(User.ID);
+
+            return Token;
+        }
+
         public UserModel GetUserByID(Guid ID)
         {
             UserRepository Repo = new UserRepository(new DataAccess.DataAccess());
