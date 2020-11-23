@@ -41,6 +41,9 @@ namespace UnikBolig.Application
             if (User == null)
                 throw new Exception("User not found");
 
+            if (User.Password != Password)
+                throw new Exception("User not found");
+
             var TokenRepo = new TokenRepository(new DataAccess.DataAccess());
             TokenRepo.UpdateTokenFromUserID(User.ID);
             TokenRepo.Save();
@@ -56,6 +59,7 @@ namespace UnikBolig.Application
             return Repo.GetUserByID(ID);
         }
 
+        // needs admin authentication
         public void DeleteUser(Guid UserID, Guid AdminID)
         {
             UserRepository Repo = new UserRepository(new DataAccess.DataAccess());
@@ -64,6 +68,31 @@ namespace UnikBolig.Application
             UserModel User = Repo.GetUserByID(UserID);
             Repo.Delete(User);
             Repo.Save();
+        }
+
+        public bool AuthenticateUser(Guid ID, string Token)
+        {
+            TokenRepository Repo = new TokenRepository(new DataAccess.DataAccess());
+            var _Token = Repo.GetTokenByUserID(ID);
+
+            if (_Token.Token == Token)
+                return true;
+            else
+                return false;
+        }
+
+        public void BecomeLandlord(Guid ID, string Token, string Type)
+        {
+            UserRepository Repo = new UserRepository(new DataAccess.DataAccess());
+            if (!AuthenticateUser(ID, Token))
+                throw new Exception("Unauthorized");
+            try
+            {
+                Repo.UpdateUserType(ID, Type);
+            }catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

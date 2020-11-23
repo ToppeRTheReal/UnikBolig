@@ -21,6 +21,7 @@ namespace UnikBolig.DataAccess.Repository
             var check = this.Context.Users.Where(x => x.Email == User.Email || x.Phone == User.Phone).FirstOrDefault();
             if (check != null)
                 throw new Exception("User already exists");
+            User.Type = "default";
 
             Context.Users.Add(User);
             Context.SaveChanges();
@@ -51,6 +52,16 @@ namespace UnikBolig.DataAccess.Repository
         public UserModel GetUserByID(Guid ID)
         {
             return Context.Users.Where(x => x.ID == ID).FirstOrDefault();
+        }
+
+        public void UpdateUserType(Guid UserID, string Type)
+        {
+            var User = GetUserByID(UserID);
+            if (User == null)
+                throw new Exception("User not found");
+
+            User.Type = Type;
+            Save();
         }
 
         public IEnumerable<UserModel> GetUsers()
