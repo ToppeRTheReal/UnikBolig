@@ -59,7 +59,7 @@ namespace UnikBolig.Api.Controllers
             UserHandler handler = new UserHandler();
             try
             {
-                handler.BecomeLandlord(Request.UserID, Request.UserToken, Request.NewType);
+                handler.ChangeUserType(Request.UserID, Request.UserToken, Request.NewType);
                 return Ok();
             }catch (Exception e)
             {
