@@ -21,6 +21,10 @@ namespace UnikBolig.Application
             if (ruleset == null)
                 throw new Exception("ruleset not found");
 
+            var houseCheck = Context.Estates.Where(x => x.StreetName == estate.StreetName && x.HouseNumber == estate.HouseNumber).FirstOrDefault();
+            if (houseCheck != null)
+                throw new Exception("House already exists");
+
             estate.ID = Guid.NewGuid();
             Context.Estates.Add(estate);
             Context.SaveChanges();

@@ -1,14 +1,15 @@
 ﻿<Properties StartupConfiguration="{47618C5A-9C85-43EA-BCF4-E81A36C79C49}|Default">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Api/Controllers/RulesetController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Domain/EstateModel.cs">
     <Files>
       <File FileName="UnikBolig.Application/UserHandler.cs" Line="38" Column="1" />
-      <File FileName="UnikBolig.Api/Controllers/RulesetController.cs" Line="19" Column="38" />
+      <File FileName="UnikBolig.Api/Controllers/RulesetController.cs" Line="15" Column="19" />
       <File FileName="UnikBolig.Api/Controllers/UserController.cs" Line="30" Column="1" />
       <File FileName="UnikBolig.Api/Response/UserResponse.cs" Line="6" Column="1" />
       <File FileName="UnikBolig.Application/RulesetHandler.cs" Line="22" Column="35" />
-      <File FileName="UnikBolig.Application/EstateHandler.cs" Line="24" Column="40" />
-      <File FileName="UnikBolig.Api/Controllers/EstateController.cs" Line="1" Column="1" />
+      <File FileName="UnikBolig.Application/EstateHandler.cs" Line="26" Column="1" />
+      <File FileName="UnikBolig.Api/Controllers/EstateController.cs" Line="19" Column="1" />
+      <File FileName="UnikBolig.Domain/EstateModel.cs" Line="12" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,15 +17,14 @@
           <Node name="UnikBolig" expanded="True">
             <Node name="Tests" expanded="True" />
             <Node name="UnikBolig.Api" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="RulesetController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Response" expanded="True" />
             </Node>
             <Node name="UnikBolig.Application" expanded="True" />
             <Node name="UnikBolig.DataAccess" expanded="True" />
             <Node name="UnikBolig.Models" expanded="True">
               <Node name="Requests" expanded="True" />
+              <Node name="EstateModel.cs" selected="True" />
             </Node>
           </Node>
         </State>
