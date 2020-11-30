@@ -29,5 +29,11 @@ namespace UnikBolig.Application
             Context.Estates.Add(estate);
             Context.SaveChanges();
         }
+
+        public EstateModel GetHouseByID(Guid EstateID)
+        {
+            var Context = new DataAccess.DataAccess();
+            return Context.Estates.Where(x => x.ID == EstateID).FirstOrDefault();
+        }
     }
 }

@@ -22,9 +22,17 @@ namespace UnikBolig.Api.Controllers
             }catch (Exception e)
             {
                 var error = new ErrorResponse();
-                error.Message = error.Message;
+                error.Message = e.Message;
                 return Unauthorized(error);
             }
+        }
+
+        [HttpGet]
+        [Route("get/{ID}")]
+        public IActionResult GetEstate([FromRoute] Guid ID)
+        {
+            var Handler = new EstateHandler();
+            return Ok(Handler.GetHouseByID(ID));
         }
     }
 }

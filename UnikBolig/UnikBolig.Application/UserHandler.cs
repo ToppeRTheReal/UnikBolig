@@ -95,6 +95,33 @@ namespace UnikBolig.Application
             }
         }
 
+        public void CreateUpdateUserDetails(UserDetailModel Details, string token)
+        {
+            var Context = new DataAccess.DataAccess();
+            var User = Context.Users.Where(x => x.ID == Details.UserID).FirstOrDefault();
+            if (User == null)
+                throw new Exception("User not found");
+
+            if (!this.AuthenticateUser(Details.UserID, token))
+                throw new Exception("Unauthorized");
+
+            var _Details = Context.UserDetails.Where(x => x.UserID == Details.UserID).FirstOrDefault();
+            if(_Details == null)
+            {
+                Details.ID = Guid.NewGuid();
+                Context.UserDetails.Add(Details);
+            }else
+            {
+                _Details.About = Details.About;
+                _Details.Dog = Details.Dog;
+                _Details.Cat = Details.Cat;
+                _Details.Creep = Details.Creep;
+                _Details.Fish = Details.Fish;
+            }
+
+            Context.SaveChanges();
+        }
+
         private static Random random = new Random();
         public static string RandomString(int length)
         {
