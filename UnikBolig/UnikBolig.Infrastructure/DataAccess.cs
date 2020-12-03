@@ -8,10 +8,14 @@ namespace UnikBolig.DataAccess
     {
         public DbSet<UserModel> Users { get; set; }
         public DbSet<TokenModel> Tokens { get; set; }
+        public DbSet<EstateModel> Estates { get; set; }
+        public DbSet<EstateRulesetModel> Rulesets { get; set; }
+
+        public DbSet<UserDetailModel> UserDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer(@"Server=localhost;Database=UnikBolig;User Id=SA;Password=!SafePwd123");
+            builder.UseSqlServer(@"Server=176.20.223.184;Database=UnikBolig;User Id=Unik;Password=UnikBolig123");
         }
     }
 }

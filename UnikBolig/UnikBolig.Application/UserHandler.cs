@@ -1,6 +1,7 @@
 ﻿using System;
 using UnikBolig.Models;
-using UnikBolig.DataAccess.Repository;
+using UnikBolig.DataAccess;
+using System.Linq;
 
 namespace UnikBolig.Application
 {
@@ -18,16 +19,22 @@ namespace UnikBolig.Application
             User.Email = Email;
             User.Phone = Phone;
             User.Password = Password;
+            User.Type = "renter";
 
-            var UserRepo = new UserRepository(new DataAccess.DataAccess());
-            try
-            {
-                UserRepo.Add(User);
-                UserRepo.Save();
-            }catch(Exception e)
-            {
-                throw e;
-            }
+            var Context = new DataAccess.DataAccess();
+            var user = Context.Users.Where(x => x.ID == ID).FirstOrDefault();
+            if(user != null)
+                throw new Exception("User Already Exists");
+
+            TokenModel Token = new TokenModel();
+            Token.ID = Guid.NewGuid();
+            Token.Token = RandomString(100);
+            Token.UserID = User.ID;
+
+            Context.Users.Add(User);
+            Context.SaveChanges();
+            Context.Tokens.Add(Token);
+            Context.SaveChanges();
         }
 
         public TokenModel Login(string Email, string Password)
@@ -35,8 +42,9 @@ namespace UnikBolig.Application
             if(Email == string.Empty || Password == string.Empty)
                 throw new Exception("Username or password were left empty");
 
-            UserRepository Repo = new UserRepository(new DataAccess.DataAccess());
-            var User = Repo.GetUserByEmail(Email);
+            var Context = new DataAccess.DataAccess();
+
+            var User = Context.Users.Where(x => x.Email == Email).FirstOrDefault();
 
             if (User == null)
                 throw new Exception("User not found");
@@ -44,36 +52,26 @@ namespace UnikBolig.Application
             if (User.Password != Password)
                 throw new Exception("User not found");
 
-            var TokenRepo = new TokenRepository(new DataAccess.DataAccess());
-            TokenRepo.UpdateTokenFromUserID(User.ID);
-            TokenRepo.Save();
+            var Token = Context.Tokens.Where(x => x.UserID == User.ID).FirstOrDefault();
+            Token.Token = RandomString(100);
 
-            TokenModel Token = TokenRepo.GetTokenByUserID(User.ID);
+            Context.SaveChanges();
 
             return Token;
         }
 
         public UserModel GetUserByID(Guid ID)
         {
-            UserRepository Repo = new UserRepository(new DataAccess.DataAccess());
-            return Repo.GetUserByID(ID);
+            var Context = new DataAccess.DataAccess();
+            return Context.Users.Where(x => x.ID == ID).FirstOrDefault();
         }
 
-        // needs admin authentication
-        public void DeleteUser(Guid UserID, Guid AdminID)
+        public bool AuthenticateUser(Guid UserID, string Token)
         {
-            UserRepository Repo = new UserRepository(new DataAccess.DataAccess());
-
-            // Add admin authentication
-            UserModel User = Repo.GetUserByID(UserID);
-            Repo.Delete(User);
-            Repo.Save();
-        }
-
-        public bool AuthenticateUser(Guid ID, string Token)
-        {
-            TokenRepository Repo = new TokenRepository(new DataAccess.DataAccess());
-            var _Token = Repo.GetTokenByUserID(ID);
+            var Context = new DataAccess.DataAccess();
+            var _Token = Context.Tokens.Where(x => x.UserID == UserID).FirstOrDefault();
+            if (_Token == null)
+                throw new Exception("User not found");
 
             if (_Token.Token == Token)
                 return true;
@@ -81,18 +79,55 @@ namespace UnikBolig.Application
                 return false;
         }
 
-        public void BecomeLandlord(Guid ID, string Token, string Type)
+        public void ChangeUserType(Guid ID, string Token, string Type)
         {
-            UserRepository Repo = new UserRepository(new DataAccess.DataAccess());
+            var Context = new DataAccess.DataAccess();
             if (!AuthenticateUser(ID, Token))
                 throw new Exception("Unauthorized");
             try
             {
-                Repo.UpdateUserType(ID, Type);
+                var User = Context.Users.Where(x => x.ID == ID).FirstOrDefault();
+                User.Type = Type;
+                Context.SaveChanges();
             }catch (Exception e)
             {
                 throw e;
             }
+        }
+
+        public void CreateUpdateUserDetails(UserDetailModel Details, string token)
+        {
+            var Context = new DataAccess.DataAccess();
+            var User = Context.Users.Where(x => x.ID == Details.UserID).FirstOrDefault();
+            if (User == null)
+                throw new Exception("User not found");
+
+            if (!this.AuthenticateUser(Details.UserID, token))
+                throw new Exception("Unauthorized");
+
+            var _Details = Context.UserDetails.Where(x => x.UserID == Details.UserID).FirstOrDefault();
+            if(_Details == null)
+            {
+                Details.ID = Guid.NewGuid();
+                Context.UserDetails.Add(Details);
+            }else
+            {
+                _Details.About = Details.About;
+                _Details.Dog = Details.Dog;
+                _Details.Cat = Details.Cat;
+                _Details.Creep = Details.Creep;
+                _Details.Fish = Details.Fish;
+            }
+
+            Context.SaveChanges();
+        }
+
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

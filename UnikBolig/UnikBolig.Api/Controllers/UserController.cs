@@ -59,9 +59,26 @@ namespace UnikBolig.Api.Controllers
             UserHandler handler = new UserHandler();
             try
             {
-                handler.BecomeLandlord(Request.UserID, Request.UserToken, Request.NewType);
+                handler.ChangeUserType(Request.UserID, Request.UserToken, Request.NewType);
                 return Ok();
             }catch (Exception e)
+            {
+                var error = new ErrorResponse();
+                error.Message = e.Message;
+                return Unauthorized(error);
+            }
+        }
+
+        [HttpPost]
+        [Route("Details")]
+        public IActionResult CreateUpdateUserDetails([FromBody] Models.Requests.UserDetailsRequest Request)
+        {
+            var handler = new UserHandler();
+            try
+            {
+                handler.CreateUpdateUserDetails(Request.Details, Request.Token);
+                return Ok();
+            }catch(Exception e)
             {
                 var error = new ErrorResponse();
                 error.Message = e.Message;
