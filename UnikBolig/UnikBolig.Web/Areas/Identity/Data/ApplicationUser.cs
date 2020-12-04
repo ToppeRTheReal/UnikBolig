@@ -18,5 +18,17 @@ namespace Unik.Areas.Identity.Data
         [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; }
 
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string StreetName { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(50)")]
+        public string HouseNumber { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(50)")]
+        public string Zipcode { get; set; }
+
     }
 }
