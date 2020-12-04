@@ -34,7 +34,7 @@ namespace UnikBolig.Web.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Telefonnummer")]
             public string PhoneNumber { get; set; }
         }
 
