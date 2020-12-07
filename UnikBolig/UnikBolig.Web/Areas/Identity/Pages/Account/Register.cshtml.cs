@@ -26,6 +26,8 @@ namespace Unik.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        IUserHandler handler = new UserHandler(null);
+
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -90,15 +92,15 @@ namespace Unik.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            IUserHandler handler = new UserHandler(null);
             try
             {
-                handler.Create(Guid.NewGuid(), Input.FirstName, Input.LastName, Input.Email, Input.Phone, Input.Password);
-                return RedirectToRoute("/Identity/Account/Login");
+               this.handler.Create(Guid.NewGuid(), Input.FirstName, Input.LastName, Input.Email, Input.Phone, Input.Password);
+               return RedirectToRoute("/Identity/Account/Login");
             }
-            catch
+            catch(Exception e)
             {
                 // handler error view here
+
                 return Page();
             }
             
