@@ -104,6 +104,9 @@ namespace UnikBolig.Application
 
         public void ChangeUserType(Guid ID, string Token, string Type)
         {
+            if (Type != "renter" || Type == "landlord" || Type == "admin")
+                throw new Exception("Usertype does not exist");
+
             var Context = new DataAccess.DataAccess();
             if (!AuthenticateUser(ID, Token))
                 throw new Exception("Unauthorized");
