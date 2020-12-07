@@ -15,6 +15,7 @@ namespace UnikBolig.Application
     public class EstateHandler : IEstateHandler
     {
         IDataAccess Context;
+        IUserHandler userHandler = new UserHandler(null);
 
         public EstateHandler(IDataAccess context)
         {
@@ -63,8 +64,7 @@ namespace UnikBolig.Application
             if (Estate.UserID != UserID)
                 throw new Exception("Unauthorized");
 
-            var _UserHandler = new UserHandler();
-            if (!_UserHandler.AuthenticateUser(UserID, Token))
+            if (!this.userHandler.AuthenticateUser(UserID, Token))
                 throw new Exception("Unauthorized");
 
             var Ruleset = Context.Rulesets.Where(x => x.ID == estate.RulesetID).FirstOrDefault();
@@ -83,7 +83,6 @@ namespace UnikBolig.Application
             Estate.Floor = estate.Floor;
 
             Context.SaveChanges();
-
         }
 
         public EstateModel GetByID(Guid EstateID)

@@ -7,14 +7,14 @@ using UnikBolig.Api.Response;
 namespace UnikBolig.Api.Controllers
 {
     [ApiController]
-    [Route("Estates")]
+    [Route("estates")]
     public class EstateController : ControllerBase
     {
 
         IEstateHandler handler = new EstateHandler(null);
 
         [HttpPost]
-        [Route("Create")]
+        [Route("create")]
         public IActionResult Create([FromBody] API.Requests.CreateEstateRequest request)
         {
             try
@@ -35,12 +35,11 @@ namespace UnikBolig.Api.Controllers
         {
             try
             {
-                this.handler = new EstateHandler();
-                handler.Update(request.EstateID, request.Estate, request.UserID, request.Token);
+                this.handler.Update(request.EstateID, request.Estate, request.UserID, request.Token);
                 return Ok();
             } catch (Exception e)
             {
-                var error = new ErrorResponse();
+                ErrorResponse error = new ErrorResponse();
                 error.Message = e.Message;
                 return Unauthorized(error);
             }

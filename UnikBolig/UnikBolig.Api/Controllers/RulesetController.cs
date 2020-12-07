@@ -7,14 +7,14 @@ using UnikBolig.Api.Response;
 namespace UnikBolig.Api.Controllers
 {
     [ApiController]
-    [Route("Rulesets")]
+    [Route("rulesets")]
     public class RulesetController : ControllerBase
     {
 
         IRulesetHandler handler = new RulesetHandler(null);
 
         [HttpPost]
-        [Route("Create")]
+        [Route("create")]
         public IActionResult Create([FromBody] API.Requests.RulesetRequest request)
         {
             try

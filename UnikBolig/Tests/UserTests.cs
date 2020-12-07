@@ -12,12 +12,12 @@ namespace Tests
     public class UserTests
     {
         Guid UserID = Guid.NewGuid();
-        UserHandler Handler = new UserHandler();
+        UserHandler Handler = new UserHandler(null);
 
         [Fact]
         public void CreateUser()
         {
-            Handler.CreateUser(UserID, "Thomas", "Clausen", "topperhdoriginal@gmail.com", "40242041", "pwd");
+            this.Handler.Create(UserID, "Thomas", "Clausen", "topperhdoriginal@gmail.com", "40242041", "pwd");
 
             var Context = new DataAccess();
             var check = Context.Users.Where(x => x.ID == UserID).FirstOrDefault();
@@ -29,7 +29,7 @@ namespace Tests
         public void FindUser()
         {
             // Virker ikke og giver ingen mening
-            var user = Handler.GetUserByID(UserID);
+            var user = Handler.GetByID(UserID);
             Assert.NotNull(user);
         }
 

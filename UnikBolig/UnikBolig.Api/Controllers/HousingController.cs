@@ -15,7 +15,7 @@ namespace UnikBolig.Api.Controllers
 
         [HttpPost]
         [Route("add")]
-        public IActionResult AddToWaitingList([FromBody] WaitingList list, [FromBody] string Token)
+        public IActionResult AddToWaitingList([FromBody] WaitingList list, string Token)
         {
             try
             {
@@ -26,6 +26,38 @@ namespace UnikBolig.Api.Controllers
                 var err = new ErrorResponse();
                 err.Message = e.Message;
                 return Unauthorized(err);
+            }
+        }
+
+        [HttpPost]
+        [Route("remove")]
+        public  IActionResult RemoveFromWaitingList([FromBody] Guid UserID, string Token, Guid EstateID)
+        {
+            try
+            {
+                this.handler.Remove(UserID, Token, EstateID);
+                return Ok();
+            }catch (Exception e)
+            {
+                var error = new ErrorResponse();
+                error.Message = e.Message;
+                return Unauthorized(error);
+            }
+        }
+
+        [HttpPost]
+        [Route("gethousings")]
+        public IActionResult GetHousesWrittinUpFor([FromBody] Guid UserID, string Token)
+        {
+            try
+            {
+                var houses = this.handler.GetAllHousingsWrittenUpFor(UserID, Token);
+                return Ok(houses);
+            }catch (Exception e)
+            {
+                var error = new ErrorResponse();
+                error.Message = e.Message;
+                return Unauthorized(error);
             }
         }
     }

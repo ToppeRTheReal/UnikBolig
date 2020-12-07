@@ -2,6 +2,7 @@
 using UnikBolig.Models;
 using UnikBolig.DataAccess;
 using System.Linq;
+using System.Transactions;
 
 namespace UnikBolig.Application
 {
@@ -50,10 +51,15 @@ namespace UnikBolig.Application
             Token.Token = RandomString(100);
             Token.UserID = User.ID;
 
-            Context.Users.Add(User);
-            Context.SaveChanges();
-            Context.Tokens.Add(Token);
-            Context.SaveChanges();
+            using (TransactionScope scope = new TransactionScope())
+            {
+                Context.Users.Add(User);
+                Context.SaveChanges();
+                Context.Tokens.Add(Token);
+                Context.SaveChanges();
+
+                scope.Complete();
+            }
         }
 
         public TokenModel Login(string Email, string Password)
@@ -81,14 +87,12 @@ namespace UnikBolig.Application
 
         public UserModel GetByID(Guid ID)
         {
-            var Context = new DataAccess.DataAccess();
-            return Context.Users.Where(x => x.ID == ID).FirstOrDefault();
+            return this.Context.Users.Where(x => x.ID == ID).FirstOrDefault();
         }
 
         public bool AuthenticateUser(Guid UserID, string Token)
         {
-            var Context = new DataAccess.DataAccess();
-            var _Token = Context.Tokens.Where(x => x.UserID == UserID).FirstOrDefault();
+            var _Token = this.Context.Tokens.Where(x => x.UserID == UserID).FirstOrDefault();
             if (_Token == null)
                 throw new Exception("User not found");
 

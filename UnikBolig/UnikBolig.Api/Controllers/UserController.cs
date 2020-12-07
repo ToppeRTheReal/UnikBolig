@@ -14,7 +14,7 @@ namespace UnikBolig.Api.Controllers
         IUserHandler handler = new UserHandler(null);
 
         [HttpPost]
-        [Route("Register")]
+        [Route("register")]
         public IActionResult Register([FromBody] UserModel User)
         {
             try
@@ -32,7 +32,7 @@ namespace UnikBolig.Api.Controllers
         }
 
         [HttpPost]
-        [Route("Login")]
+        [Route("login")]
         public IActionResult Login([FromBody] UserModel User)
         {
             try
@@ -54,14 +54,14 @@ namespace UnikBolig.Api.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateUserType")]
+        [Route("updateusertype")]
         public IActionResult UpdateUserType([FromBody] API.Requests.UpdateUserTypeRequest Request)
         {
             try
             {
                 this.handler.ChangeUserType(Request.UserID, Request.UserToken, Request.NewType);
                 return Ok();
-                }catch (Exception e)
+            }catch (Exception e)
             {
                 var error = new ErrorResponse();
                 error.Message = e.Message;
@@ -70,7 +70,7 @@ namespace UnikBolig.Api.Controllers
         }
 
         [HttpPost]
-        [Route("Details")]
+        [Route("details")]
         public IActionResult CreateUpdateUserDetails([FromBody] API.Requests.UserDetailsRequest Request)
         {
             try
