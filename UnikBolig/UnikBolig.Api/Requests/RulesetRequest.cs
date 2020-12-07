@@ -1,6 +1,7 @@
 ﻿using System;
+using UnikBolig.Models;
 
-namespace UnikBolig.Models.Requests
+namespace UnikBolig.API.Requests
 {
     public class RulesetRequest
     {

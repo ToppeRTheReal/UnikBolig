@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Response\" />
+    <Folder Include="Requests\" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>

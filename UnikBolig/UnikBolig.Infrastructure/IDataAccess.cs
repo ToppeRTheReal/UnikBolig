@@ -4,7 +4,7 @@ using UnikBolig.Models;
 
 namespace UnikBolig.DataAccess
 {
-    public class DataAccess : DbContext, IDataAccess
+    public interface IDataAccess
     {
         public DbSet<UserModel> Users { get; set; }
         public DbSet<TokenModel> Tokens { get; set; }
@@ -14,14 +14,6 @@ namespace UnikBolig.DataAccess
         public DbSet<UserDetailModel> UserDetails { get; set; }
         public DbSet<WaitingList> WaitingList { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
-        {
-            builder.UseSqlServer(@"Server=176.20.223.184;Database=UnikBolig;User Id=Unik;Password=UnikBolig123");
-        }
-
-        void IDataAccess.SaveChanges()
-        {
-            this.SaveChanges();
-        }
+        public void SaveChanges();
     }
 }

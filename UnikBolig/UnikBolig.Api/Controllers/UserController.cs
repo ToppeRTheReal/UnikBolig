@@ -10,14 +10,16 @@ namespace UnikBolig.Api.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
+
+        IUserHandler handler = new UserHandler(null);
+
         [HttpPost]
         [Route("Register")]
         public IActionResult Register([FromBody] UserModel User)
         {
             try
             {
-                UserHandler handler = new UserHandler();
-                handler.CreateUser(Guid.NewGuid(), User.FirstName, User.LastName, User.Email, User.Phone, User.Password);
+                this.handler.Create(Guid.NewGuid(), User.FirstName, User.LastName, User.Email, User.Phone, User.Password);
                 UserResponse response = new UserResponse();
                 response.Message = "Success, please login now";
                 return Ok(response);
@@ -35,8 +37,7 @@ namespace UnikBolig.Api.Controllers
         {
             try
             {
-                UserHandler handler = new UserHandler();
-                TokenModel UserToken = handler.Login(User.Email, User.Password);
+                TokenModel UserToken = this.handler.Login(User.Email, User.Password);
                 var Response = new UserResponse();
                 Response.Message = "Success";
                 Response.Token = UserToken.Token;
@@ -54,14 +55,13 @@ namespace UnikBolig.Api.Controllers
 
         [HttpPost]
         [Route("UpdateUserType")]
-        public IActionResult UpdateUserType([FromBody] Models.Requests.UpdateUserTypeRequest Request)
+        public IActionResult UpdateUserType([FromBody] API.Requests.UpdateUserTypeRequest Request)
         {
-            UserHandler handler = new UserHandler();
             try
             {
-                handler.ChangeUserType(Request.UserID, Request.UserToken, Request.NewType);
+                this.handler.ChangeUserType(Request.UserID, Request.UserToken, Request.NewType);
                 return Ok();
-            }catch (Exception e)
+                }catch (Exception e)
             {
                 var error = new ErrorResponse();
                 error.Message = e.Message;
@@ -71,12 +71,11 @@ namespace UnikBolig.Api.Controllers
 
         [HttpPost]
         [Route("Details")]
-        public IActionResult CreateUpdateUserDetails([FromBody] Models.Requests.UserDetailsRequest Request)
+        public IActionResult CreateUpdateUserDetails([FromBody] API.Requests.UserDetailsRequest Request)
         {
-            var handler = new UserHandler();
             try
             {
-                handler.CreateUpdateUserDetails(Request.Details, Request.Token);
+                this.handler.CreateUpdateUserDetails(Request.Details, Request.Token);
                 return Ok();
             }catch(Exception e)
             {

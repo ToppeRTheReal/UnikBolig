@@ -11,5 +11,8 @@ namespace UnikBolig.Models
         public int Size { get; set; }
         public string StreetName { get; set; }
         public int HouseNumber { get; set; }
+        public int Floor { get; set; }
+        public int Postal { get; set; }
+        public Boolean IsRented { get; set; }
     }
 }
