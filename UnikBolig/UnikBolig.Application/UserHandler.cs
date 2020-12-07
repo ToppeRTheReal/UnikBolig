@@ -5,9 +5,29 @@ using System.Linq;
 
 namespace UnikBolig.Application
 {
-    public class UserHandler
+    public interface IUserHandler
     {
-        public void CreateUser(Guid ID, string FirstName, string LastName, string Email, string Phone, string Password)
+        public void Create(Guid ID, string FirstName, string LastName, string Email, string Phone, string Password);
+        public TokenModel Login(string Email, string Password);
+        public UserModel GetByID(Guid ID);
+        public bool AuthenticateUser(Guid UserID, string Token);
+        public void ChangeUserType(Guid ID, string Token, string Type);
+        public void CreateUpdateUserDetails(UserDetailModel Details, string token);
+    }
+
+    public class UserHandler : IUserHandler
+    {
+        IDataAccess Context;
+
+        public UserHandler(IDataAccess context)
+        {
+            if (context == null)
+                context = new DataAccess.DataAccess();
+
+            this.Context = context;
+        }
+
+        public void Create(Guid ID, string FirstName, string LastName, string Email, string Phone, string Password)
         {
             if (FirstName == "" || LastName == "" || Email == "" || Phone == "" || Password == "")
                 throw new Exception("Some values were empty");
@@ -21,7 +41,6 @@ namespace UnikBolig.Application
             User.Password = Password;
             User.Type = "renter";
 
-            var Context = new DataAccess.DataAccess();
             var user = Context.Users.Where(x => x.ID == ID).FirstOrDefault();
             if(user != null)
                 throw new Exception("User Already Exists");
@@ -60,7 +79,7 @@ namespace UnikBolig.Application
             return Token;
         }
 
-        public UserModel GetUserByID(Guid ID)
+        public UserModel GetByID(Guid ID)
         {
             var Context = new DataAccess.DataAccess();
             return Context.Users.Where(x => x.ID == ID).FirstOrDefault();

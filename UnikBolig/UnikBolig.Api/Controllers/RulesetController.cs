@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using UnikBolig.Application;
 using UnikBolig.Models;
-using UnikBolig.Models.Requests;
 using UnikBolig.Api.Response;
 
 namespace UnikBolig.Api.Controllers
@@ -11,14 +10,16 @@ namespace UnikBolig.Api.Controllers
     [Route("Rulesets")]
     public class RulesetController : ControllerBase
     {
+
+        IRulesetHandler handler = new RulesetHandler(null);
+
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create([FromBody] Models.Requests.RulesetRequest request)
+        public IActionResult Create([FromBody] API.Requests.RulesetRequest request)
         {
             try
             {
-                var handler = new RulesetHandler();
-                handler.Create(request.Ruleset, request.Token);
+                this.handler.Create(request.Ruleset, request.Token);
                 return Ok();
             }catch (Exception e)
             {

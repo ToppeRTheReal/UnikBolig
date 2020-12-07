@@ -1,5 +1,7 @@
 ﻿using System;
-namespace UnikBolig.Models.Requests
+using UnikBolig.Models;
+
+namespace UnikBolig.API.Requests
 {
     public class UserDetailsRequest
     {

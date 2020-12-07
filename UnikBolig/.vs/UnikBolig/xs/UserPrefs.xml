@@ -1,32 +1,28 @@
 ﻿<Properties StartupConfiguration="{47618C5A-9C85-43EA-BCF4-E81A36C79C49}|Default">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Domain/Requests/UserDetailsRequest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Api/Controllers/HousingController.cs">
     <Files>
-      <File FileName="UnikBolig.Application/UserHandler.cs" Line="106" Column="50" />
-      <File FileName="UnikBolig.Api/Controllers/UserController.cs" Line="74" Column="65" />
-      <File FileName="UnikBolig.Domain/Requests/UserDetailsRequest.cs" Line="6" Column="14" />
+      <File FileName="UnikBolig.Api/Controllers/HousingController.cs" Line="11" Column="52" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UnikBolig" expanded="True">
-            <Node name="Tests" expanded="True" />
             <Node name="UnikBolig.Api" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Response" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="HousingController.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="UnikBolig.Application" expanded="True" />
             <Node name="UnikBolig.DataAccess" expanded="True" />
-            <Node name="UnikBolig.Models" expanded="True">
-              <Node name="Requests" expanded="True">
-                <Node name="UserDetailsRequest.cs" selected="True" />
-              </Node>
-            </Node>
+            <Node name="UnikBolig.Models" expanded="True" />
+            <Node name="UnikBolig.Web" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.UnikBolig.Web PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

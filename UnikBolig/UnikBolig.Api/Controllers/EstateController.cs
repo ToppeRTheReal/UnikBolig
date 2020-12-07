@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using UnikBolig.Application;
-using UnikBolig.Models;
+using UnikBolig.Api.Requests;
 using UnikBolig.Api.Response;
 
 namespace UnikBolig.Api.Controllers
@@ -10,14 +10,16 @@ namespace UnikBolig.Api.Controllers
     [Route("Estates")]
     public class EstateController : ControllerBase
     {
+
+        IEstateHandler handler = new EstateHandler(null);
+
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create([FromBody] Models.Requests.CreateEstateRequest request)
+        public IActionResult Create([FromBody] API.Requests.CreateEstateRequest request)
         {
             try
             {
-                var handler = new EstateHandler();
-                handler.Create(request.Estate, request.Token);
+                this.handler.Create(request.Estate, request.Token);
                 return Ok();
             }catch (Exception e)
             {
@@ -27,12 +29,28 @@ namespace UnikBolig.Api.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("Update")]
+        public IActionResult Update([FromBody] UpdateEstateRequest request)
+        {
+            try
+            {
+                this.handler = new EstateHandler();
+                handler.Update(request.EstateID, request.Estate, request.UserID, request.Token);
+                return Ok();
+            } catch (Exception e)
+            {
+                var error = new ErrorResponse();
+                error.Message = e.Message;
+                return Unauthorized(error);
+            }
+        }
+
         [HttpGet]
         [Route("get/{ID}")]
-        public IActionResult GetEstate([FromRoute] Guid ID)
+        public IActionResult GetEstate(Guid ID)
         {
-            var Handler = new EstateHandler();
-            return Ok(Handler.GetHouseByID(ID));
+            return Ok(this.handler.GetByID(ID));
         }
     }
 }
