@@ -13,7 +13,7 @@
     <div class="col-md-4">
         <form asp-action="UserSettings">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
             <div class="form-group">
                 <label asp-for="About" class="control-label"></label>
                 <textarea asp-for="About" class="form-control" rows="5"></textarea>
@@ -45,14 +45,10 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="RowVersion" class="control-label"></label>
-                <input asp-for="RowVersion" class="form-control" />
-                <span asp-validation-for="RowVersion" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+
+
         </form>
     </div>
 </div>
