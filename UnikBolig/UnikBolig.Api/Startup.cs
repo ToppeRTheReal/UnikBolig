@@ -29,9 +29,19 @@ namespace UnikBolig.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
             services.AddDbContext<DataAccess.DataAccess>(options =>
                 options.UseSqlServer(@"Server=176.20.223.184;Database=UnikBolig;User Id=Unik;Password=UnikBolig123")
             );
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
 
             services.AddScoped<IDataAccess, DataAccess.DataAccess>();
             services.AddScoped<IUserHandler, UserHandler>();
@@ -47,6 +57,8 @@ namespace UnikBolig.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

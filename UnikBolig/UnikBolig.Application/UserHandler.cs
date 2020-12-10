@@ -14,6 +14,7 @@ namespace UnikBolig.Application
         public bool AuthenticateUser(Guid UserID, string Token);
         public void ChangeUserType(Guid ID, string Token, string Type);
         public void CreateUpdateUserDetails(UserDetailModel Details, string token);
+        public UserDetailModel GetDetails(Guid UserID);
     }
 
     public class UserHandler : IUserHandler
@@ -29,6 +30,10 @@ namespace UnikBolig.Application
         {
             if (FirstName == "" || LastName == "" || Email == "" || Phone == "" || Password == "")
                 throw new Exception("Some values were empty");
+
+            var check = this.Context.Users.Where(x => x.Email == Email || x.Phone == Phone).FirstOrDefault();
+            if (check != null)
+                throw new Exception("Email eller telefon er allerede i brug");
 
             UserModel User = new UserModel();
             User.ID = ID;
@@ -148,6 +153,11 @@ namespace UnikBolig.Application
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public UserDetailModel GetDetails(Guid UserID)
+        {
+            return this.Context.UserDetails.Where(x => x.UserID == UserID).FirstOrDefault();
         }
     }
 }

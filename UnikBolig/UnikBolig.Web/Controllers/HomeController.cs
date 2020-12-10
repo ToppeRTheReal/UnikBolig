@@ -28,14 +28,21 @@ namespace Unik.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Route("register")]
+        public IActionResult Register()
+        {
+            ViewData["PartnerID"] = "Register";
+            return View();
+        }
+
+        [Route("login")]
+        public IActionResult Login()
         {
             return View();
         }
 
-        public async Task<IActionResult> UserSettings()
+        public IActionResult Privacy()
         {
-         
             return View();
         }
 

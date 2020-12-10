@@ -75,6 +75,16 @@ namespace UnikBolig.Api.Controllers
         }
 
         [HttpPost]
+        [Route("auth")]
+        public IActionResult Auth([FromBody] Requests.AuthRequest request)
+        {
+            if (!this.handler.AuthenticateUser(request.UserID, request.Token))
+                return Unauthorized();
+            else
+                return Ok();
+        }
+
+        [HttpPost]
         [Route("details")]
         public IActionResult CreateUpdateUserDetails([FromBody] API.Requests.UserDetailsRequest Request)
         {
