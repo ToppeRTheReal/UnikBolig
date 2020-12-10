@@ -97,9 +97,10 @@ namespace UnikBolig.Application
                 return false;
         }
 
+        // Concurrency not added
         public void ChangeUserType(Guid ID, string Token, string Type)
         {
-            if (Type != "renter" || Type == "landlord" || Type == "admin")
+            if (Type != "renter" && Type != "landlord" && Type != "admin")
                 throw new Exception("Usertype does not exist");
 
             if (!AuthenticateUser(ID, Token))

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace UnikBolig.Models
 {
     public class UserDetailModel : IModel
@@ -10,5 +12,7 @@ namespace UnikBolig.Models
         public Boolean Cat { get; set; }
         public Boolean Creep { get; set; }
         public Boolean Fish { get; set; }
+        [Timestamp()]
+        public byte[] RowVersion { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace UnikBolig.Models
 {
     public class UserModel : IModel
@@ -10,5 +12,7 @@ namespace UnikBolig.Models
         public string Phone { get; set; }
         public string Password { get; set; }
         public string Type { get; set; }
+        [Timestamp()]
+        public byte[] RowVersion { get; set; }
     }
 }

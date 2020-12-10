@@ -27,7 +27,13 @@ namespace UnikBolig.DataAccess
 
         void IDataAccess.SaveChanges()
         {
-            this.SaveChanges();
+            try
+            {
+                this.SaveChanges();
+            }catch(DbUpdateConcurrencyException)
+            {
+                throw new Exception("Values were updated elsewhere, please reload and try again");
+            }
         }
     }
 }

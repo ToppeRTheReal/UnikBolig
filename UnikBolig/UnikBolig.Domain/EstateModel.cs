@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace UnikBolig.Models
 {
     public class EstateModel : IModel
@@ -14,5 +16,7 @@ namespace UnikBolig.Models
         public int Floor { get; set; }
         public int Postal { get; set; }
         public Boolean IsRented { get; set; }
+        [Timestamp()]
+        public byte[] RowVersion { get; set; }
     }
 }
