@@ -5,11 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Unik.Data;
 
 namespace Unik.Migrations
 {
-    [DbContext(typeof(AuthDbContext))]
     [Migration("20201127033812_Initial-Create")]
     partial class InitialCreate
     {
