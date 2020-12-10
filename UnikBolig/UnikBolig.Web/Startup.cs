@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using UnikBolig.Application;
+using UnikBolig.DataAccess;
 
 namespace Unik
 {
@@ -25,7 +28,17 @@ namespace Unik
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
-           
+            services.AddControllers();
+            services.AddDbContext<DataAccess>(options =>
+                options.UseSqlServer(@"Server=176.20.223.184;Database=UnikBolig;User Id=Unik;Password=UnikBolig123")
+            );
+
+            services.AddScoped<IDataAccess, DataAccess>();
+            services.AddScoped<IUserHandler, UserHandler>();
+            services.AddScoped<IEstateHandler, EstateHandler>();
+            services.AddScoped<IRulesetHandler, RulesetHandler>();
+            services.AddScoped<IHousingHandler, HousingHandler>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
