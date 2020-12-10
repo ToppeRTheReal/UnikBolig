@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using UnikBolig.Application;
 using UnikBolig.Models;
 using UnikBolig.Api.Response;
+using UnikBolig.Api.Requests;
 
 namespace UnikBolig.Api.Controllers
 {
@@ -19,11 +20,11 @@ namespace UnikBolig.Api.Controllers
 
         [HttpPost]
         [Route("add")]
-        public IActionResult AddToWaitingList([FromBody] WaitingList list, string Token)
+        public IActionResult AddToWaitingList([FromBody] Requests.AddToWaitingListRequest request)
         {
             try
             {
-                this.handler.Create(list, Token);
+                this.handler.Create(request.list, request.Token);
                 return Ok();
             }catch(Exception e)
             {
@@ -35,11 +36,11 @@ namespace UnikBolig.Api.Controllers
 
         [HttpPost]
         [Route("remove")]
-        public  IActionResult RemoveFromWaitingList([FromBody] Guid UserID, string Token, Guid EstateID)
+        public  IActionResult RemoveFromWaitingList([FromBody] Requests.RemoveFromWaitingListRequest request)
         {
             try
             {
-                this.handler.Remove(UserID, Token, EstateID);
+                this.handler.Remove(request.UserID, request.Token, request.EstateID);
                 return Ok();
             }catch (Exception e)
             {
@@ -51,11 +52,11 @@ namespace UnikBolig.Api.Controllers
 
         [HttpPost]
         [Route("gethousings")]
-        public IActionResult GetHousesWrittinUpFor([FromBody] Guid UserID, string Token)
+        public IActionResult GetHousesWrittinUpFor([FromBody] Requests.GetHousesWrittenUpForRequest request)
         {
             try
             {
-                var houses = this.handler.GetAllHousingsWrittenUpFor(UserID, Token);
+                var houses = this.handler.GetAllHousingsWrittenUpFor(request.UserID, request.Token);
                 return Ok(houses);
             }catch (Exception e)
             {

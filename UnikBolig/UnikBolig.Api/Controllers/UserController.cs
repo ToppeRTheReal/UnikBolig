@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using UnikBolig.Models;
 using UnikBolig.Application;
 using UnikBolig.Api.Response;
+using System.Net.Http;
 
 namespace UnikBolig.Api.Controllers
 {
