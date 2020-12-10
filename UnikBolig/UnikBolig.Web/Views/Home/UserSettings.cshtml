@@ -2,54 +2,53 @@
 
 @{
     ViewData["Title"] = "UserSettings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>UserSettings</h1>
+<h1>Indstillinger</h1>
 
-<h4>UserDetailModel</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="UserSettings">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ID" class="control-label"></label>
-                <input asp-for="ID" class="form-control" />
-                <span asp-validation-for="ID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserID" class="control-label"></label>
-                <input asp-for="UserID" class="form-control" />
-                <span asp-validation-for="UserID" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="About" class="control-label"></label>
-                <input asp-for="About" class="form-control" />
+                <textarea asp-for="About" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="About" class="text-danger"></span>
             </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Dog" /> @Html.DisplayNameFor(model => model.Dog)
                 </label>
             </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Cat" /> @Html.DisplayNameFor(model => model.Cat)
                 </label>
             </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Creep" /> @Html.DisplayNameFor(model => model.Creep)
                 </label>
             </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Fish" /> @Html.DisplayNameFor(model => model.Fish)
                 </label>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+
+
         </form>
     </div>
 </div>
