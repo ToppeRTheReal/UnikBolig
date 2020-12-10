@@ -18,13 +18,10 @@ namespace UnikBolig.Application
 
     public class UserHandler : IUserHandler
     {
-        IDataAccess Context;
+        private readonly IDataAccess Context;
 
         public UserHandler(IDataAccess context)
         {
-            if (context == null)
-                context = new DataAccess.DataAccess();
-
             this.Context = context;
         }
 
@@ -67,9 +64,7 @@ namespace UnikBolig.Application
             if(Email == string.Empty || Password == string.Empty)
                 throw new Exception("Username or password were left empty");
 
-            var Context = new DataAccess.DataAccess();
-
-            var User = Context.Users.Where(x => x.Email == Email).FirstOrDefault();
+            var User = this.Context.Users.Where(x => x.Email == Email).FirstOrDefault();
 
             if (User == null)
                 throw new Exception("User not found");
@@ -107,12 +102,11 @@ namespace UnikBolig.Application
             if (Type != "renter" || Type == "landlord" || Type == "admin")
                 throw new Exception("Usertype does not exist");
 
-            var Context = new DataAccess.DataAccess();
             if (!AuthenticateUser(ID, Token))
                 throw new Exception("Unauthorized");
             try
             {
-                var User = Context.Users.Where(x => x.ID == ID).FirstOrDefault();
+                var User = this.Context.Users.Where(x => x.ID == ID).FirstOrDefault();
                 User.Type = Type;
                 Context.SaveChanges();
             }catch (Exception e)
@@ -123,15 +117,14 @@ namespace UnikBolig.Application
 
         public void CreateUpdateUserDetails(UserDetailModel Details, string token)
         {
-            var Context = new DataAccess.DataAccess();
-            var User = Context.Users.Where(x => x.ID == Details.UserID).FirstOrDefault();
+            var User = this.Context.Users.Where(x => x.ID == Details.UserID).FirstOrDefault();
             if (User == null)
                 throw new Exception("User not found");
 
             if (!this.AuthenticateUser(Details.UserID, token))
                 throw new Exception("Unauthorized");
 
-            var _Details = Context.UserDetails.Where(x => x.UserID == Details.UserID).FirstOrDefault();
+            var _Details = this.Context.UserDetails.Where(x => x.UserID == Details.UserID).FirstOrDefault();
             if(_Details == null)
             {
                 Details.ID = Guid.NewGuid();

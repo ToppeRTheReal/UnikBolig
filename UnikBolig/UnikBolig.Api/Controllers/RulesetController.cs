@@ -10,8 +10,12 @@ namespace UnikBolig.Api.Controllers
     [Route("rulesets")]
     public class RulesetController : ControllerBase
     {
-
         IRulesetHandler handler = new RulesetHandler(null);
+
+        public RulesetController(IRulesetHandler handler)
+        {
+            this.handler = handler;
+        }
 
         [HttpPost]
         [Route("create")]

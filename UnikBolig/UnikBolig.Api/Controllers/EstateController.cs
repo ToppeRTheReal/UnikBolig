@@ -11,7 +11,12 @@ namespace UnikBolig.Api.Controllers
     public class EstateController : ControllerBase
     {
 
-        IEstateHandler handler = new EstateHandler(null);
+        IEstateHandler handler;
+
+        public EstateController(IEstateHandler handler)
+        {
+            this.handler = handler;
+        }
 
         [HttpPost]
         [Route("create")]

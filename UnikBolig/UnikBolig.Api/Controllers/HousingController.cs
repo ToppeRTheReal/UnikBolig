@@ -10,8 +10,12 @@ namespace UnikBolig.Api.Controllers
     [Route("waitinglist")]
     public class HousingController : ControllerBase
     {
+        IHousingHandler handler;
 
-        IHousingHandler handler = new HousingHandler(null);
+        public HousingController(IHousingHandler handler)
+        {
+            this.handler = handler;
+        }
 
         [HttpPost]
         [Route("add")]

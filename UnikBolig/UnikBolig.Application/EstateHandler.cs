@@ -14,15 +14,13 @@ namespace UnikBolig.Application
 
     public class EstateHandler : IEstateHandler
     {
-        IDataAccess Context;
-        IUserHandler userHandler = new UserHandler(null);
+        private readonly IDataAccess Context;
+        private readonly IUserHandler userHandler;
 
         public EstateHandler(IDataAccess context)
         {
-            if (context == null)
-                context = new DataAccess.DataAccess();
-
             this.Context = context;
+            this.userHandler = new UserHandler(this.Context);
         } 
 
         public void Create(EstateModel estate, string Token)
@@ -56,8 +54,7 @@ namespace UnikBolig.Application
 
         public void Update(Guid EstateID, EstateModel estate, Guid UserID, string Token)
         {
-            var Context = new DataAccess.DataAccess();
-            var Estate = Context.Estates.Where(x => x.ID == estate.ID).FirstOrDefault();
+            var Estate = this.Context.Estates.Where(x => x.ID == estate.ID).FirstOrDefault();
             if (Estate == null)
                 throw new Exception("Estate not found");
 
@@ -67,7 +64,7 @@ namespace UnikBolig.Application
             if (!this.userHandler.AuthenticateUser(UserID, Token))
                 throw new Exception("Unauthorized");
 
-            var Ruleset = Context.Rulesets.Where(x => x.ID == estate.RulesetID).FirstOrDefault();
+            var Ruleset = this.Context.Rulesets.Where(x => x.ID == estate.RulesetID).FirstOrDefault();
             if (Ruleset == null)
                 throw new Exception("Ruleset not found");
 
@@ -87,8 +84,7 @@ namespace UnikBolig.Application
 
         public EstateModel GetByID(Guid EstateID)
         {
-            var Context = new DataAccess.DataAccess();
-            return Context.Estates.Where(x => x.ID == EstateID).FirstOrDefault();
+            return this.Context.Estates.Where(x => x.ID == EstateID).FirstOrDefault();
         }
     }
 }

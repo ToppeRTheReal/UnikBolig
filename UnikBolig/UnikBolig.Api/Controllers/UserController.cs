@@ -7,11 +7,15 @@ using UnikBolig.Api.Response;
 namespace UnikBolig.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("user")]
     public class UserController : ControllerBase
     {
+        IUserHandler handler;
 
-        IUserHandler handler = new UserHandler(null);
+        public UserController(IUserHandler handler)
+        {
+            this.handler = handler;
+        }
 
         [HttpPost]
         [Route("register")]

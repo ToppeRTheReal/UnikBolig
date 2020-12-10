@@ -16,14 +16,11 @@ namespace UnikBolig.Application
     public class HousingHandler : IHousingHandler
     {
 
-        IDataAccess Context;
-        IUserHandler UserHandler;
+        private readonly IDataAccess Context;
+        private readonly IUserHandler UserHandler;
 
         public HousingHandler(IDataAccess context)
         {
-            if (context == null)
-                context = new DataAccess.DataAccess();
-
             this.Context = context;
             this.UserHandler = new UserHandler(context);
         }

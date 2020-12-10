@@ -12,13 +12,10 @@ namespace UnikBolig.Application
 
     public class RulesetHandler : IRulesetHandler
     {
-        IDataAccess Context;
+        private readonly IDataAccess Context;
 
         public RulesetHandler(IDataAccess context)
         {
-            if (context == null)
-                context = new DataAccess.DataAccess();
-
             this.Context = context;
         }
 

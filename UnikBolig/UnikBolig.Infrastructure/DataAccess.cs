@@ -14,10 +14,16 @@ namespace UnikBolig.DataAccess
         public DbSet<UserDetailModel> UserDetails { get; set; }
         public DbSet<WaitingList> WaitingList { get; set; }
 
+        public DataAccess(DbContextOptions<DataAccess> access) : base(access)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlServer(@"Server=176.20.223.184;Database=UnikBolig;User Id=Unik;Password=UnikBolig123");
         }
+
 
         void IDataAccess.SaveChanges()
         {
