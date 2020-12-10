@@ -8,20 +8,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Unik.Models;
 using UnikBolig.Models;
-using UnikBolig.Web.Models;
-
+using UnikBolig.Application;
 namespace Unik.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ConnectionStringClass _user;
+        IUserHandler handler = new UserHandler(null);
 
-        public HomeController(ILogger<HomeController> logger, ConnectionStringClass user)
+
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _user = user;
         }
 
         public IActionResult Index()
@@ -34,29 +33,13 @@ namespace Unik.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public async Task<IActionResult> UserSettings()
         {
+         
             return View();
         }
 
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        public IActionResult UserSettings()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult UserSettings(UserDetailModel users)
-        {
-            _user.Add(users);
-            _user.SaveChanges();
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

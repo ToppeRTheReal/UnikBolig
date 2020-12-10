@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UnikBolig.Application\UnikBolig.Application.csproj" />
     <ProjectReference Include="..\UnikBolig.Domain\UnikBolig.Models.csproj" />
+    <ProjectReference Include="..\UnikBolig.Infrastructure\UnikBolig.DataAccess.csproj" />
   </ItemGroup>
 
 
