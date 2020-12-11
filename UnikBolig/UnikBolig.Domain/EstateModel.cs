@@ -16,6 +16,7 @@ namespace UnikBolig.Models
         public int Floor { get; set; }
         public int Postal { get; set; }
         public Boolean IsRented { get; set; }
+        public string ImgUrl { get; set; }
         [Timestamp()]
         public byte[] RowVersion { get; set; }
     }
