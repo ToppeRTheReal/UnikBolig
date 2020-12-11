@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnikBolig.DataAccess;
 using UnikBolig.Models;
@@ -10,6 +11,8 @@ namespace UnikBolig.Application
         public void Create(EstateModel estate, string Token);
         public void Update(Guid EstateID, EstateModel estate, Guid UserID, string Token);
         public EstateModel GetByID(Guid EstateID);
+        public List<EstateModel> GetAll();
+
     }
 
     public class EstateHandler : IEstateHandler
@@ -85,6 +88,11 @@ namespace UnikBolig.Application
         public EstateModel GetByID(Guid EstateID)
         {
             return this.Context.Estates.Where(x => x.ID == EstateID).FirstOrDefault();
+        }
+
+        public List<EstateModel> GetAll()
+        {
+            return this.Context.Estates.ToList();
         }
     }
 }

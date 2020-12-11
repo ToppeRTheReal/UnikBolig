@@ -14,10 +14,12 @@ namespace UnikBolig.Web.Controllers
     {
         IUserHandler handler;
         IHousingHandler HousingHandler;
-        public UserController(IUserHandler handler, IHousingHandler _handler)
+        IEstateHandler estateHandler;
+        public UserController(IUserHandler handler, IHousingHandler _handler, IEstateHandler _estateHandler)
         {
             this.handler = handler;
             this.HousingHandler = _handler;
+            this.estateHandler = _estateHandler;
         }
         public IActionResult Index()
         {
@@ -43,7 +45,9 @@ namespace UnikBolig.Web.Controllers
         [Route("bolig/{ID}")]
         public IActionResult Estate([FromRoute] Guid ID)
         {
-            return View();
+
+            var response = this.estateHandler.GetAll();
+            return View(response);
         }
 
         [HttpPost]
