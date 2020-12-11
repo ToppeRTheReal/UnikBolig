@@ -14,7 +14,7 @@ namespace UnikBolig.Application
         public bool AuthenticateUser(Guid UserID, string Token);
         public void ChangeUserType(Guid ID, string Token, string Type);
         public void CreateUpdateUserDetails(UserDetailModel Details, string token);
-        public UserDetailModel GetDetails(Guid UserID);
+        public UserDetailModel GetDetails(Guid UserID, string Token);
     }
 
     public class UserHandler : IUserHandler
@@ -155,8 +155,11 @@ namespace UnikBolig.Application
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public UserDetailModel GetDetails(Guid UserID)
+        public UserDetailModel GetDetails(Guid UserID, string Token)
         {
+            if (!this.AuthenticateUser(UserID, Token))
+                throw new Exception("Unauthorized");
+
             return this.Context.UserDetails.Where(x => x.UserID == UserID).FirstOrDefault();
         }
     }
