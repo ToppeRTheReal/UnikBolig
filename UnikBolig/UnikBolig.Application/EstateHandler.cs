@@ -20,10 +20,10 @@ namespace UnikBolig.Application
         private readonly IDataAccess Context;
         private readonly IUserHandler userHandler;
 
-        public EstateHandler(IDataAccess context)
+        public EstateHandler(IDataAccess context, IUserHandler handler)
         {
             this.Context = context;
-            this.userHandler = new UserHandler(this.Context);
+            this.userHandler = handler;
         } 
 
         public void Create(EstateModel estate, string Token)
