@@ -41,7 +41,7 @@ namespace UnikBolig.Web.Controllers
         }
 
         [Route("bolig/{ID}")]
-        public IActionResult Estate([FromRoute] Guid EstateID)
+        public IActionResult Estate([FromRoute] Guid ID)
         {
             return View();
         }
