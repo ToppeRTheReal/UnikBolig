@@ -13,11 +13,35 @@ namespace UnikBolig.Web.Controllers
     public class UserController : Controller
     {
         IUserHandler handler;
-        public UserController(IUserHandler handler)
+        IHousingHandler HousingHandler;
+        public UserController(IUserHandler handler, IHousingHandler _handler)
         {
             this.handler = handler;
+            this.HousingHandler = _handler;
         }
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Route("writeups")]
+        public IActionResult WrittenUpEstates()
+        {
+            try
+            {
+                Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                string Token = HttpContext.Session.GetString("Token");
+                var response = this.HousingHandler.GetAllHousingsWrittenUpFor(UserID, Token);
+                return View(response);
+            }catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View("/Views/Home/Login.cshtml");
+            }
+        }
+
+        [Route("bolig/{ID}")]
+        public IActionResult Estate([FromRoute] Guid EstateID)
         {
             return View();
         }
@@ -58,10 +82,16 @@ namespace UnikBolig.Web.Controllers
         [Route("details")]
         public IActionResult Details()
         {
-            Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
-            this.handler.AuthenticateUser(UserID, HttpContext.Session.GetString("Token"));
-            var details = this.handler.GetDetails(UserID);
-            return View(details);
+            try
+            {
+                Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                var details = this.handler.GetDetails(UserID, HttpContext.Session.GetString("Token"));
+                return View(details);
+            }catch
+            {
+                return View("/Views/Home/Login.cshmtl");
+            }
+            
         }
     }
 }

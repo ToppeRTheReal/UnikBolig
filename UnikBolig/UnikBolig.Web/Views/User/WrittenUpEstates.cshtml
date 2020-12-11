@@ -1,0 +1,45 @@
+﻿@using System.Collections.Generic;
+
+@model List<UnikBolig.Models.EstateModel>; 
+
+<div class="col-md-12 justify-content-center align-content-center">
+    <div class="col-md-6 row">
+        <div class="col-md-2">
+            <p> Navn </p>
+        </div>
+        <div class="col-md-2">
+            <p> Størrelse </p>
+        </div>
+        <div class="col-md-3">
+            <p> Adresse </p>
+        </div>
+        <div class="col-md-2">
+            <p> Etage </p>
+        </div>
+    </div>
+    @{
+        if(Model.Count() == 0)
+        {
+            <div class="col-md-6">
+                <center> Du er ikke skrevet op til nogle boliger </center>
+            </div>
+        }
+        foreach (var item in Model)
+        {
+            <div class="col-md-6 row">
+                <div class="col-md-2">
+                    <p> @item.Name m2 </p>
+                </div>
+                <div class="col-md-2">
+                    <p> @item.Size </p>
+                </div>
+                <div class="col-md-3">
+                    <p> @item.StreetName @item.HouseNumber @item.Postal </p>
+                </div>
+                <div class="col-md-2">
+                    <p> @item.Floor </p>
+                </div>
+            </div>
+        }
+    }
+</div>
