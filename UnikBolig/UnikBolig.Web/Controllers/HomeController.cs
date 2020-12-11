@@ -11,7 +11,7 @@ using UnikBolig.Models;
 using UnikBolig.Application;
 namespace Unik.Controllers
 {
-    //[Authorize]
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
