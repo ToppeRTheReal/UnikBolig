@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnikBolig.Application;
 using Microsoft.AspNetCore.Http;
 using UnikBolig.Web.Models;
+using UnikBolig.Models;
 
 namespace UnikBolig.Web.Controllers
 {
@@ -137,6 +138,22 @@ namespace UnikBolig.Web.Controllers
                 return View("/Views/Home/Login.cshmtl");
             }
             
+        }
+
+        [HttpPost]
+        [Route("SaveUserDetails")]
+        public IActionResult UserDetailsSave(UserDetailModel Model)
+        {
+            try
+            {
+                this.handler.CreateUpdateUserDetails(Model, HttpContext.Session.GetString("Token"));
+                ViewBag.Message("Dine detaljer blev gemt" );
+                return View("/Views/User/Index.cshtml");
+            }catch(Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View("/Views/User/Index.cshtml");
+            }
         }
     }
 }

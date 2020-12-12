@@ -4,7 +4,20 @@
 
 }
 
-<h3> @Model.About </h3>
+<form method="post" asp-controller="User" asp-action="UserDetailsSave">
+    <label> Om dig </label>
+    <input class="form-control" placeholder="Om" asp-for="About" />
+    <label> Har du en hund? </label>
+    <input class="form-control" ¨type="checkbox" asp-for="Dog" />
+    <label> Har du en kat? </label>
+    <input class="form-control" ¨type="checkbox" asp-for="Cat" />
+    <label> Har du kryb? </label>
+    <input class="form-control" ¨type="checkbox" asp-for="Creep" />
+    <label> Har du en fisk? </label>
+    <input class="form-control" ¨type="checkbox" asp-for="Fish" />
+
+    <button class="btn btn-primary"> Gem </button>
+</form>
 
 <script>
    
