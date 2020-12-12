@@ -23,7 +23,18 @@ namespace UnikBolig.Web.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            try
+            {
+                Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                string Token = HttpContext.Session.GetString("Token");
+                if (!this.handler.AuthenticateUser(UserID, Token))
+                    throw new Exception();
+                return View();
+            }catch
+            {
+                ViewBag.Message = "Der skete en fejl, prøv at logge ind igen";
+                return View("/Views/Home/Login.cshtml");
+            }
         }
 
         [Route("writeups")]
@@ -45,9 +56,35 @@ namespace UnikBolig.Web.Controllers
         [Route("bolig/{ID}")]
         public IActionResult Estate([FromRoute] Guid ID)
         {
-
             var response = this.estateHandler.GetAll();
             return View(response);
+        }
+
+        [HttpPost]
+        [Route("BecomeLandlord")]
+        public IActionResult BecomeLandlord()
+        {
+            try
+            {
+                Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                string Token = HttpContext.Session.GetString("Token");
+                this.handler.ChangeUserType(UserID, Token, "landlord");
+                HttpContext.Session.SetString("Type", "landlord");
+                ViewBag.Message = "Du er nu landlord";
+                return View("/Views/User/Index.cshtml");
+            }catch(ArgumentNullException)
+            {
+                ViewBag.Message = "Det skete en ukendt fejl prøv at logge ind igen";
+                return View("/Views/Home/Login.cshtml");
+            }catch(FormatException)
+            {
+                ViewBag.Message = "Det skete en ukendt fejl prøv at logge ind igen";
+                return this.Index();
+            }catch
+            {
+                ViewBag.Message = "Der skete en ukendt fejl prøv igen";
+                return this.Index();
+            }
         }
 
         [HttpPost]
@@ -73,9 +110,13 @@ namespace UnikBolig.Web.Controllers
             try
             {
                 var token = this.handler.Login(Model.Email, Model.Password);
+                var usr = this.handler.GetByID(token.UserID, token.Token);
                 HttpContext.Session.SetString("UserID", token.UserID.ToString());
                 HttpContext.Session.SetString("Token", token.Token);
-                return View("/Views/Home/Index.cshtml");
+                HttpContext.Session.SetString("FirstName", usr.FirstName);
+                HttpContext.Session.SetString("LastName", usr.LastName);
+                HttpContext.Session.SetString("Type", usr.Type);
+                return RedirectToAction("Index");
             }catch (Exception e)
             {
                 ViewBag.Message = e.Message;

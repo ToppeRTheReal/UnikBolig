@@ -10,7 +10,7 @@ namespace UnikBolig.Application
     {
         public void Create(Guid ID, string FirstName, string LastName, string Email, string Phone, string Password);
         public TokenModel Login(string Email, string Password);
-        public UserModel GetByID(Guid ID);
+        public UserModel GetByID(Guid ID, string Token);
         public bool AuthenticateUser(Guid UserID, string Token);
         public void ChangeUserType(Guid ID, string Token, string Type);
         public void CreateUpdateUserDetails(UserDetailModel Details, string token);
@@ -85,8 +85,11 @@ namespace UnikBolig.Application
             return Token;
         }
 
-        public UserModel GetByID(Guid ID)
+        public UserModel GetByID(Guid ID, string Token)
         {
+            if (!this.AuthenticateUser(ID, Token))
+                throw new Exception("Unauthorized");
+
             return this.Context.Users.Where(x => x.ID == ID).FirstOrDefault();
         }
 

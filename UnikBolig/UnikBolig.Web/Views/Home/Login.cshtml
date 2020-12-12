@@ -1,9 +1,10 @@
 ﻿@model UnikBolig.Web.Models.LoginModel;
+@using Microsoft.AspNetCore.Http;
 
 @{
     ViewData["Title"] = "Log in";
- 
 
+    Context.Session.Clear();
 }
 <div class="col-md-10 offset-1">
     <div class="login-form-icon">
