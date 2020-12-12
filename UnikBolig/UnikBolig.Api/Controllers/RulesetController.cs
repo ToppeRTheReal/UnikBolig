@@ -10,7 +10,7 @@ namespace UnikBolig.Api.Controllers
     [Route("rulesets")]
     public class RulesetController : ControllerBase
     {
-        IRulesetHandler handler = new RulesetHandler(null);
+        private readonly IRulesetHandler handler;
 
         public RulesetController(IRulesetHandler handler)
         {

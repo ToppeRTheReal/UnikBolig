@@ -11,7 +11,7 @@ namespace UnikBolig.Api.Controllers
     public class EstateController : ControllerBase
     {
 
-        IEstateHandler handler;
+        private readonly IEstateHandler handler;
 
         public EstateController(IEstateHandler handler)
         {

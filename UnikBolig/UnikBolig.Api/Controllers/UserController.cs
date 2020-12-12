@@ -11,7 +11,7 @@ namespace UnikBolig.Api.Controllers
     [Route("user")]
     public class UserController : ControllerBase
     {
-        IUserHandler handler;
+        private readonly IUserHandler handler;
 
         public UserController(IUserHandler handler)
         {

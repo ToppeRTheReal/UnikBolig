@@ -8,9 +8,10 @@ namespace UnikBolig.Application
 {
     public interface IHousingHandler
     {
-        public void Create(WaitingList list, string Token);
-        public void Remove(Guid UserID, string Token, Guid EstateID);
-        public List<EstateModel> GetAllHousingsWrittenUpFor(Guid UserID, string Token);
+        void Create(WaitingList list, string Token);
+        List<EstateModel> GetAllHousingsWrittenUpFor(Guid UserID, string Token);
+        List<HousingHandler.UserWithPoints> GetHousingQualifiers(Guid EstateID, Guid UserID, string Token);
+        void Remove(Guid UserID, string Token, Guid EstateID);
     }
 
     public class HousingHandler : IHousingHandler
@@ -62,11 +63,11 @@ namespace UnikBolig.Application
             List<WaitingList> items = this.Context.WaitingList.Where(x => x.UserID == UserID).ToList();
 
             List<EstateModel> HousesWrittenUpFor = new List<EstateModel>();
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 var x = this.Context.Estates.Where(x => x.ID == item.EstateID).FirstOrDefault();
 
-                if(x != null)
+                if (x != null)
                     HousesWrittenUpFor.Add(x);
             }
 
@@ -86,7 +87,7 @@ namespace UnikBolig.Application
             var ruleset = this.Context.Rulesets.Where(x => x.ID == estate.RulesetID).FirstOrDefault();
 
             List<UserWithPoints> response = new List<UserWithPoints>();
-            foreach(var item in waitingListItems)
+            foreach (var item in waitingListItems)
             {
                 UserWithPoints user = new UserWithPoints();
                 var UserEntity = this.Context.Users.Where(x => x.ID == item.UserID).FirstOrDefault();
@@ -117,6 +118,6 @@ namespace UnikBolig.Application
         {
             public int Points { get; set; }
             public string About { get; set; }
-        } 
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace UnikBolig.Api.Controllers
     [Route("waitinglist")]
     public class HousingController : ControllerBase
     {
-        IHousingHandler handler;
+        private readonly IHousingHandler handler;
 
         public HousingController(IHousingHandler handler)
         {
