@@ -156,6 +156,15 @@ namespace UnikBolig.Web.Controllers
             }
         }
 
-     
+        [HttpPost]
+        public IActionResult Estate(Models.EstateModel Model)
+        {
+
+            return View();
+
+        }
+
+
+
     }
 }

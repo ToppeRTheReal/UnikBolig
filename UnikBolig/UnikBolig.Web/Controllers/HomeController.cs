@@ -51,6 +51,12 @@ namespace Unik.Controllers
             return View();
         }
 
+        public IActionResult Estate()
+        {
+            return View();
+        }
+
+
         
        
 
