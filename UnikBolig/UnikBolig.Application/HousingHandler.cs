@@ -11,6 +11,8 @@ namespace UnikBolig.Application
         void Create(WaitingList list, string Token);
         List<EstateModel> GetAllHousingsWrittenUpFor(Guid UserID, string Token);
         List<HousingHandler.UserWithPoints> GetHousingQualifiers(Guid EstateID, Guid UserID, string Token);
+        public void MoveIn(Guid EstateOwnerID, string EstateOwnerToken, Guid UserToMoveInID, Guid EstateID);
+        public void MoveOut(Guid EstateOwnerID, string Token, Guid EstateID);
         void Remove(Guid UserID, string Token, Guid EstateID);
     }
 
@@ -112,6 +114,41 @@ namespace UnikBolig.Application
             }
             response.OrderBy(usr => usr.Points);
             return response;
+        }
+
+        public void MoveIn(Guid EstateOwnerID, string EstateOwnerToken, Guid UserToMoveInID, Guid EstateID)
+        {
+            if (!this.UserHandler.AuthenticateUser(EstateOwnerID, EstateOwnerToken))
+                throw new Exception("Unauthorized");
+
+            var Estate = this.Context.Estates.Where(x => x.ID == EstateID).FirstOrDefault();
+            if (Estate == null)
+                throw new Exception("Estate not found");
+
+            if (Estate.IsRented)
+                throw new Exception("Someone already lives in this estate");
+
+            var Usr = this.Context.Users.Where(x => x.ID == UserToMoveInID).FirstOrDefault();
+            if (Usr == null)
+                throw new Exception("User not found");
+
+            Estate.IsRented = true;
+            Estate.CurrentRenter = Usr.ID;
+            this.Context.SaveChanges();
+        }
+
+        public void MoveOut(Guid EstateOwnerID, string Token, Guid EstateID)
+        {
+            if (!this.UserHandler.AuthenticateUser(EstateOwnerID, Token))
+                throw new Exception("Unauthorized");
+
+            var Estate = this.Context.Estates.Where(x => x.ID == EstateID).FirstOrDefault();
+            if (Estate.UserID != EstateOwnerID)
+                throw new Exception("Unauthorized");
+
+            Estate.IsRented = false;
+            Estate.CurrentRenter = null;
+            this.Context.SaveChanges();
         }
 
         public class UserWithPoints : UserModel

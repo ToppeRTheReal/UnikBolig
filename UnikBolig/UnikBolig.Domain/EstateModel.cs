@@ -17,6 +17,7 @@ namespace UnikBolig.Models
         public int Postal { get; set; }
         public Boolean IsRented { get; set; }
         public string ImgUrl { get; set; }
+        public Guid? CurrentRenter { get; set; }
         [Timestamp()]
         public byte[] RowVersion { get; set; }
     }
