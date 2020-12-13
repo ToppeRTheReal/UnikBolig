@@ -11,27 +11,23 @@ namespace Tests
     [Collection("Sequential")]
     public class UserTests
     {
-        Guid UserID = Guid.NewGuid();
-        UserHandler Handler = new UserHandler(null);
+        DataMock Mock = new DataMock();
+        UserHandler handler;
+
+        public UserTests()
+        {
+            this.handler = new UserHandler(this.Mock);
+        }
 
         [Fact]
         public void CreateUser()
         {
-            this.Handler.Create(UserID, "Thomas", "Clausen", "topperhdoriginal@gmail.com", "40242041", "pwd");
+            Guid UserID = Guid.NewGuid();
+            handler.Create(UserID, "Boesse", "Christian", "r@r.dk", "99999999", "pwd123");
 
-            var Context = new DataAccess();
-            var check = Context.Users.Where(x => x.ID == UserID).FirstOrDefault();
-
-            Assert.NotNull(check);
+            var usr = this.Mock.Users.Where(x => x.ID == UserID).FirstOrDefault();
+            Console.WriteLine(usr.Email);
+            Assert.NotNull(usr);
         }
-
-        [Fact]
-        public void FindUser()
-        {
-            // Virker ikke og giver ingen mening
-            var user = Handler.GetByID(UserID);
-            Assert.NotNull(user);
-        }
-
     }
 }

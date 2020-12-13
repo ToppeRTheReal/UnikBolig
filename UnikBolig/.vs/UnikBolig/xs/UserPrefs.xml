@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{47618C5A-9C85-43EA-BCF4-E81A36C79C49}|Default">
+  <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="UnikBolig" expanded="True">
+            <Node name="Tests" expanded="True" />
+            <Node name="UnikBolig.Api" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="LandlordController.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="UnikBolig.Application" expanded="True" />
+            <Node name="UnikBolig.DataAccess" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
