@@ -54,13 +54,6 @@ namespace UnikBolig.Web.Controllers
             }
         }
 
-        [Route("bolig/{ID}")]
-        public IActionResult Estate([FromRoute] Guid ID)
-        {
-            var response = this.estateHandler.GetAll();
-            return View(response);
-        }
-
         [HttpPost]
         [Route("BecomeLandlord")]
         public IActionResult BecomeLandlord()

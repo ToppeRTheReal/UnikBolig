@@ -15,18 +15,27 @@ namespace Unik.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         IUserHandler handler;
+        IEstateHandler estateHandler;
 
 
-        public HomeController(ILogger<HomeController> logger, IUserHandler handler)
+        public HomeController(ILogger<HomeController> logger, IUserHandler handler, IEstateHandler eHandler)
         {
             _logger = logger;
             this.handler = handler;
+            this.estateHandler = eHandler;
         }
 
         [Route("/")]
         public IActionResult Index()
         {
             return View();
+        }
+
+        [Route("bolig/{ID}")]
+        public IActionResult Estate([FromRoute] Guid ID)
+        {
+            var response = this.estateHandler.GetAll();
+            return View(response);
         }
 
         [Route("register")]
