@@ -38,6 +38,38 @@ namespace UnikBolig.Api.Controllers
                 return StatusCode(403, err);
             }
         }
+
+        [HttpPost]
+        [Route("movein")]
+        public IActionResult MoveIn([FromBody] MoveInRequest Request)
+        {
+            try
+            {
+                this.handler.MoveIn(Request.OwnerID, Request.Token, Request.UserID, Request.EstateID);
+                return Ok();
+            }catch(Exception e)
+            {
+                var err = new ErrorResponse();
+                err.Message = e.Message;
+                return NotFound(e);
+            }
+        }
+
+        [HttpPost]
+        [Route("moveout")]
+        public IActionResult MoveOut([FromBody] MoveInRequest request)
+        {
+            try
+            {
+                this.handler.MoveOut(request.OwnerID, request.Token, request.EstateID);
+                return Ok();
+            }catch (Exception e)
+            {
+                var err = new ErrorResponse();
+                err.Message = e.Message;
+                return Unauthorized(err);
+            }
+        }
     }
 
     public class GetQualifiersModel
@@ -45,5 +77,20 @@ namespace UnikBolig.Api.Controllers
         public Guid EstateID { get; set; }
         public Guid UserID { get; set; }
         public string Token { get; set; }
+    }
+
+    public class MoveInRequest
+    {
+        public Guid EstateID { get; set; }
+        public Guid OwnerID { get; set; }
+        public Guid UserID { get; set; }
+        public string Token { get; set; }
+    }
+
+    public class MoveOutRequest
+    {
+        public Guid OwnerID { get; set; }
+        public string Token { get; set; }
+        public Guid EstateID { get; set; }
     }
 }

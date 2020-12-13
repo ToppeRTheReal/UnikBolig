@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{47618C5A-9C85-43EA-BCF4-E81A36C79C49}|Default">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Application/HousingHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Api/Controllers/LandlordController.cs">
     <Files>
-      <File FileName="UnikBolig.Api/Controllers/HousingController.cs" Line="21" Column="5" />
+      <File FileName="UnikBolig.Api/Controllers/HousingController.cs" Line="67" Column="10" />
       <File FileName="UnikBolig.Domain/EstateModel.cs" Line="18" Column="46" />
-      <File FileName="UnikBolig.Application/HousingHandler.cs" Line="14" Column="18" />
+      <File FileName="UnikBolig.Application/HousingHandler.cs" Line="151" Column="40" />
+      <File FileName="UnikBolig.Api/Controllers/LandlordController.cs" Line="42" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,11 +13,11 @@
           <Node name="UnikBolig" expanded="True">
             <Node name="Tests" expanded="True" />
             <Node name="UnikBolig.Api" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="LandlordController.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="UnikBolig.Application" expanded="True">
-              <Node name="HousingHandler.cs" selected="True" />
-            </Node>
+            <Node name="UnikBolig.Application" expanded="True" />
             <Node name="UnikBolig.DataAccess" expanded="True" />
             <Node name="UnikBolig.Models" expanded="True" />
           </Node>
