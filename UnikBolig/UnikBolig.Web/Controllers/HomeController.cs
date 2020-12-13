@@ -14,14 +14,16 @@ namespace Unik.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        IUserHandler handler = new UserHandler(null);
+        IUserHandler handler;
 
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUserHandler handler)
         {
             _logger = logger;
+            this.handler = handler;
         }
 
+        [Route("/")]
         public IActionResult Index()
         {
             return View();

@@ -54,7 +54,11 @@ namespace UnikBolig.Api.Controllers
         [Route("get/{ID}")]
         public IActionResult GetEstate(Guid ID)
         {
-            return Ok(this.handler.GetByID(ID));
+            var estate = this.handler.GetByID(ID);
+            if (estate == null)
+                return NotFound();
+            else
+                return Ok(estate);
         }
     }
 }
