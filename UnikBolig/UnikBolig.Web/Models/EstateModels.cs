@@ -9,9 +9,7 @@ namespace UnikBolig.Web.Models
 {
     public class EstateModels
     {
-        public Guid ID { get; set; }
-        public Guid UserID { get; set; }
-        public Guid RulesetID { get; set; }
+        public string Rulesetstring { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -48,12 +46,6 @@ namespace UnikBolig.Web.Models
         [Display(Name = "Postnummer")]
         public int Postal { get; set; }
 
-        public Boolean IsRented { get; set; }
         public string ImgUrl { get; set; }
-        public Guid? CurrentRenter { get; set; }
-
-        [Timestamp()]
-        public byte[] RowVersion { get; set; }
-
     }
 }

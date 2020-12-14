@@ -59,20 +59,30 @@ namespace UnikBolig.Web.Controllers
                 string Token = HttpContext.Session.GetString("Token");
                 this.estateHandler.Create(Model, Token);
                 ViewBag.Message = "Bolig Oprette";
-                return View();
             }
             catch(Exception)
             {
                 ViewBag.Message = "Der er sket en fejl";
-                return View();
             }
-           
+
+            return View("/Views/Landlord/Index.cshtml");
         }
 
         [Route("estates/create")]
         public IActionResult Estate()
         {
-            return View();
+            try
+            {
+                Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                string Token = HttpContext.Session.GetString("Token");
+
+                ViewBag.Rulesets = this.rulesetHandler.GetOwnedRuleset(UserID, Token);
+                return View();
+            }catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View("/Views/Home/Login.cshtml");
+            }
         }
 
         [Route("rulesets/create")]

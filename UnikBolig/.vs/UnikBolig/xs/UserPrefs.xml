@@ -1,24 +1,27 @@
 ﻿<Properties StartupConfiguration="{FF033012-8DAD-43CE-9AAF-3269088F2676}|Unik">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Web/Views/Shared/_Layout.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Application/EstateHandler.cs">
     <Files>
-      <File FileName="UnikBolig.Web/Controllers/LandlordController.cs" Line="119" Column="54" />
-      <File FileName="UnikBolig.Web/Views/Shared/_Layout.cshtml" Line="1" Column="1" />
+      <File FileName="UnikBolig.Web/Controllers/LandlordController.cs" Line="60" Column="1" />
+      <File FileName="UnikBolig.Web/Views/Landlord/Estate.cshtml" Line="16" Column="37" />
+      <File FileName="UnikBolig.Web/Models/EstateModels.cs" Line="49" Column="43" />
+      <File FileName="UnikBolig.Application/EstateHandler.cs" Line="45" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UnikBolig" expanded="True">
-            <Node name="UnikBolig.Application" expanded="True" />
+            <Node name="UnikBolig.Application" expanded="True">
+              <Node name="EstateHandler.cs" selected="True" />
+            </Node>
             <Node name="UnikBolig.Models" expanded="True" />
             <Node name="UnikBolig.Web" expanded="True">
               <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
                 <Node name="Landlord" expanded="True" />
-                <Node name="Shared" expanded="True">
-                  <Node name="_Layout.cshtml" selected="True" />
-                </Node>
+                <Node name="Shared" expanded="True" />
                 <Node name="User" expanded="True" />
               </Node>
             </Node>
@@ -31,7 +34,9 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/thomasclausen/Documents/GitHub/UnikBolig/UnikBolig/UnikBolig.Web/Controllers/LandlordController.cs" relfile="UnikBolig.Web/Controllers/LandlordController.cs" line="57" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

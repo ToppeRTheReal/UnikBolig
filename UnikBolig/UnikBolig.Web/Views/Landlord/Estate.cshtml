@@ -1,4 +1,4 @@
-﻿@model UnikBolig.Models.EstateModel
+﻿@model UnikBolig.Models.EstateModel;
 
 @{
     ViewData["Title"] = "Estate";
@@ -15,7 +15,7 @@
 
             <div class="form-group">
                 <label class="control-label">Navn</label>
-                <input asp-for="Name" class="form-control" />
+                <textarea asp-for="Name" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
@@ -23,6 +23,18 @@
                 <label class="control-label">Beskrivelse</label>
                 <textarea asp-for="Description" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Navn</label>
+                <select asp-for="RulesetID">
+                    @{
+                        foreach (UnikBolig.Models.EstateRulesetModel item in ViewBag.Rulesets)
+                        {
+                            <option value="@item.ID"> @item.Name </option>
+                        }
+                    }
+                </select>
             </div>
 
             <div class="form-group">
@@ -54,13 +66,13 @@
                 <input asp-for="Postal" class="form-control" />
                 <span asp-validation-for="Postal" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <label class="control-label">billede</label>
                 <input asp-for="ImgUrl" class="form-control" />
                 <span asp-validation-for="ImgUrl" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <input type="submit" value="Udlej bolig" class="btn btn-primary" />
             </div>
