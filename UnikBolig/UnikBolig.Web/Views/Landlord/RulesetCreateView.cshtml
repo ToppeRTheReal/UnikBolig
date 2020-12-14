@@ -1,0 +1,16 @@
+﻿@model UnikBolig.Models.EstateRulesetModel;
+
+<div class="col-md-12 justify-content-center align-content-center">
+    <div class="col-md-6">
+        <form asp-controller="Landlord" asp-action="CreateRuleset">
+            <span> Navn på regelsættet <input class="form-control" asp-for="Name" /></span>
+
+            <span> Må der være hund i hustanden? <input class="form-control" type="checkbox" asp-for="Dog" /></span>
+            <span> Må der være kat i hustanden? <input class="form-control" type="checkbox" asp-for="Cat" /></span>
+            <span> Må der være kryb i hustanden? <input class="form-control" type="checkbox" asp-for="Creep" /></span>
+            <span> Må der være fisk i hustanden? <input class="form-control" type="checkbox" asp-for="Fish" /></span>
+
+            <button class="btn btn-primary btn-block"> Opret regelsæt </button>
+        </form>
+    </div>
+</div> 

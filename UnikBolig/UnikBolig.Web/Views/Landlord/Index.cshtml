@@ -1,46 +1,17 @@
-﻿@using System.Collections.Generic;
-@model List<UnikBolig.Models.EstateModel>;
+﻿<h1> Landlord side </h1>
 
 @{
-}
-
-<div class="text-center">
-    <h1 class="display-4">Velkommen til Boligudlejer siden</h1>
-    <p>På denne side kan du se de boliger som du udlejer, samt detaljer om dem</p>
-</div>
-
-
-@{
-    if (Model == null)
+    foreach(UnikBolig.Models.EstateRulesetModel item in ViewBag.Rulesets)
     {
-        <h3 class="text-center">Du har ingen boliger til leje.</h3>
-    }
-    else
-    {
-        foreach (var item in Model)
-
-        {
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-                <div class="col-sm">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Billede</text></svg>
-
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Se bolig</button>
-                                </div>
-                                <small class="text-muted"></small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        }
+        <p> @item.Name </p>
+        <p> @item.Dog </p>
     }
 }
 
+@{
+    foreach(UnikBolig.Models.EstateModel item in ViewBag.Estates)
+    {
+        <p> @item.Name </p>
+    }
+
+}
