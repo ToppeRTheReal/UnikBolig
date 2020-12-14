@@ -40,8 +40,9 @@ namespace UnikBolig.Web.Controllers
             }
            
         }
+
         [Route("estate")]
-       public IActionResult Estate()
+        public IActionResult Estate()
         {
             return View();
         }

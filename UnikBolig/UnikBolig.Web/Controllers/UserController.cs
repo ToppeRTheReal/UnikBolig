@@ -139,8 +139,9 @@ namespace UnikBolig.Web.Controllers
         {
             try
             {
+                Model.UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
                 this.handler.CreateUpdateUserDetails(Model, HttpContext.Session.GetString("Token"));
-                ViewBag.Message("Dine detaljer blev gemt" );
+                ViewBag.Message = "Dine detaljer blev gemt";
                 return View("/Views/User/Index.cshtml");
             }catch(Exception e)
             {
