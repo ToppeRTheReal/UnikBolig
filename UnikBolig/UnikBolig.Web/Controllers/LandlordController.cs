@@ -111,7 +111,12 @@ namespace UnikBolig.Web.Controllers
                 ViewBag.Message = e.Message;
             }
 
-            return this.Index();
+            Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+            string Token = HttpContext.Session.GetString("Token");
+
+            ViewBag.Rulesets = this.rulesetHandler.GetOwnedRuleset(UserID, Token);
+            ViewBag.Estates = this.estateHandler.GetOwnedEstates(UserID, Token);
+            return View("/Views/Landlord/Index.cshtml");
         }
 
         [Route("rulesets")]
