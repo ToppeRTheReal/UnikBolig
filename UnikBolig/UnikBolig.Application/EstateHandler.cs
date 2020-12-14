@@ -12,6 +12,7 @@ namespace UnikBolig.Application
         public void Update(Guid EstateID, EstateModel estate, Guid UserID, string Token);
         public EstateModel GetByID(Guid EstateID);
         public List<EstateModel> GetAll();
+        public List<EstateModel> GetOwnedEstates(Guid UserID, string Token);
 
     }
 
@@ -93,6 +94,14 @@ namespace UnikBolig.Application
         public List<EstateModel> GetAll()
         {
             return this.Context.Estates.ToList();
+        }
+
+        public List<EstateModel> GetOwnedEstates(Guid UserID, string Token)
+        {
+            if (!this.userHandler.AuthenticateUser(UserID, Token))
+                throw new Exception("Unauthorized");
+
+            return this.Context.Estates.Where(x => x.UserID == UserID).ToList();
         }
     }
 }

@@ -12,6 +12,9 @@
                     <form method="post" asp-controller="User" asp-action="BecomeLandlord">
                         <button class="btn btn-primary"> Bliv landlord </button>
                     </form>
+                }else
+                {
+                    <a href="/landlord"> Gå til landlord side </a>
                 }
             }
             <br />
@@ -42,7 +45,7 @@
         box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.7);
     }
 
-    a {
+    .item a {
         text-decoration: none;
         color: black;
     }
