@@ -45,5 +45,11 @@ namespace UnikBolig.Web.Controllers
         {
             return View();
         }
+
+        [Route("landlordPage")]
+        public IActionResult LandlordPage()
+        {
+            return View();
+        }
     }
 }
