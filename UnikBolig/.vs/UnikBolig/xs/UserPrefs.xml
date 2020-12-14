@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{FF033012-8DAD-43CE-9AAF-3269088F2676}|Unik">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Web/Controllers/LandlordController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Web/Views/Landlord/Estate.cshtml">
     <Files>
-      <File FileName="UnikBolig.Web/Views/Landlord/Estate.cshtml" Line="13" Column="39" />
-      <File FileName="UnikBolig.Web/Views/Home/Login.cshtml" Line="42" Column="15" />
+      <File FileName="UnikBolig.Web/Views/Landlord/Estate.cshtml" Line="13" Column="57" />
       <File FileName="UnikBolig.Web/Controllers/LandlordController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
@@ -13,12 +12,12 @@
             <Node name="UnikBolig.Application" expanded="True" />
             <Node name="UnikBolig.Models" expanded="True" />
             <Node name="UnikBolig.Web" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="LandlordController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Landlord" expanded="True" />
+                <Node name="Landlord" expanded="True">
+                  <Node name="Estate.cshtml" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -30,9 +29,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/thomasclausen/Documents/GitHub/UnikBolig/UnikBolig/UnikBolig.Web/Controllers/LandlordController.cs" relfile="UnikBolig.Web/Controllers/LandlordController.cs" line="50" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
