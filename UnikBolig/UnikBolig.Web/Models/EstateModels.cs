@@ -7,8 +7,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UnikBolig.Web.Models
 {
-    public class EstateModel
+    public class EstateModels
     {
+        public Guid ID { get; set; }
+        public Guid UserID { get; set; }
+        public Guid RulesetID { get; set; }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name="Navn")]
@@ -47,6 +51,9 @@ namespace UnikBolig.Web.Models
         public Boolean IsRented { get; set; }
         public string ImgUrl { get; set; }
         public Guid? CurrentRenter { get; set; }
+
+        [Timestamp()]
+        public byte[] RowVersion { get; set; }
 
     }
 }
