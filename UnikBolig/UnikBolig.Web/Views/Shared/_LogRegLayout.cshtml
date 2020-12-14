@@ -1,5 +1,6 @@
 ﻿@{ 
-    Layout = "/View/Shared/_Layout-cshtml";
+    Layout = "/Views/Shared/_Layout-cshtml";
+
 }
 
 <div class="row">
@@ -16,3 +17,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts{ 
+    @RenderSection("Scripts", required: false)
+}

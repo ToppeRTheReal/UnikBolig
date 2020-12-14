@@ -2,23 +2,38 @@
 
 
 <ul class="navbar-nav">
-@if (Context.Session.GetString("UserID") != null)
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Details">Profil</a>
-    </li>
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" href="/user/writeups"> Mine Opskrivelser </a>
-    </li>
-   
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" href="/register">Opret bruger</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" href="/login">Log ind</a>
-    </li>
-}
+    @if (Context.Session.GetString("UserID") != null)
+    {
+        if (Context.Session.GetString("Type") == "landlord")
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/landlord/estate">Opret bolig</a>
+            </li>
+        }
+
+        <li class="nav-item">
+            <a id="manage" class="nav-link text-dark" href="/user/writeups"> Mine Opskrivelser </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Profil</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Details">Indstillinger</a>
+        </li>
+
+
+
+
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/register">Opret bruger</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/login">Log ind</a>
+        </li>
+    }
 </ul>
