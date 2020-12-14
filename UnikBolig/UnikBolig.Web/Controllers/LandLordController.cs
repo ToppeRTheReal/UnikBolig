@@ -13,11 +13,33 @@ namespace UnikBolig.Web.Controllers
     public class LandLordController : Controller
     {
         IEstateHandler estateHandler;
+        IUserHandler userHandler;
 
-        public LandLordController(IEstateHandler _estateHandler)
+        public LandLordController(IEstateHandler _estateHandler, IUserHandler uhandler)
         {
            
             this.estateHandler = _estateHandler;
+            this.userHandler = uhandler;
+        }
+
+        public IActionResult Index()
+        {
+            try
+            {
+                Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                string Token = HttpContext.Session.GetString("Token");
+
+                var user = this.userHandler.GetByID(UserID, Token);
+
+                if (user.Type != "landlord")
+                    throw new Exception("Der skete en fejl, prøv at logge ind igen");
+
+                return View();
+            }catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View("/Views/Home/Login.cshtml");
+            }
         }
 
 
@@ -43,12 +65,6 @@ namespace UnikBolig.Web.Controllers
 
         [Route("estate")]
         public IActionResult Estate()
-        {
-            return View();
-        }
-
-        [Route("landlordPage")]
-        public IActionResult LandlordPage()
         {
             return View();
         }

@@ -149,14 +149,5 @@ namespace UnikBolig.Web.Controllers
                 return View("/Views/User/Index.cshtml");
             }
         }
-
-     
-
-       
-
-        
-
-
-
     }
 }
