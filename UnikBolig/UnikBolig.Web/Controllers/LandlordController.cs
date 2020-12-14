@@ -111,7 +111,7 @@ namespace UnikBolig.Web.Controllers
                 ViewBag.Message = e.Message;
             }
 
-            return View("/Views/Landlord/Index.cshtml");
+            return this.Index();
         }
 
         [Route("rulesets")]

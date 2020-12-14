@@ -1,10 +1,9 @@
 ﻿<Properties StartupConfiguration="{FF033012-8DAD-43CE-9AAF-3269088F2676}|Unik">
   <MonoDevelop.Ide.ItemProperties.UnikBolig.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Web/Views/User/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UnikBolig.Web/Views/Landlord/Index.cshtml">
     <Files>
       <File FileName="UnikBolig.Web/Controllers/LandlordController.cs" Line="27" Column="26" />
-      <File FileName="UnikBolig.Web/Views/Landlord/Index.cshtml" Line="14" Column="25" />
-      <File FileName="UnikBolig.Web/Views/User/Index.cshtml" Line="17" Column="39" />
+      <File FileName="UnikBolig.Web/Views/Landlord/Index.cshtml" Line="17" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,10 +15,10 @@
               <Node name="Controllers" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Landlord" expanded="True" />
-                <Node name="User" expanded="True">
+                <Node name="Landlord" expanded="True">
                   <Node name="Index.cshtml" selected="True" />
                 </Node>
+                <Node name="User" expanded="True" />
               </Node>
             </Node>
           </Node>
