@@ -33,7 +33,7 @@ namespace UnikBolig.Web.Controllers
                 ViewBag.Message = "Bolig Oprette";
                 return View();
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 ViewBag.Message = "Der er sket en fejl";
                 return View();
