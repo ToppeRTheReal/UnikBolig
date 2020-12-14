@@ -56,9 +56,9 @@
             </div>
             
             <div class="form-group">
-                <label  class="control-label">Opload billede</label>
-                <br />
-                <input type="file"/>
+                <label class="control-label">billede</label>
+                <input asp-for="ImgUrl" class="form-control" />
+                <span asp-validation-for="ImgUrl" class="text-danger"></span>
             </div>
             
             <div class="form-group">
