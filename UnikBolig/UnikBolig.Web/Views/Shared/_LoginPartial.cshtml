@@ -8,29 +8,29 @@
         {
 
             <div class="dropdown" style="right: 10px;">
-                <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Udlej</button>
+                <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='fas fa-home'></i>    Udlej</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="nav-link text-dark" href="/landlord/estates/create">Opret bolig</a>
                     <a class="nav-link text-dark" href="/landlord">Boligudlejer siden</a>
 
                 </div>
             </div>
-   
+
         }
 
-            <li>
-                <a class="btn btn-outline-secondary" style="left: 10px;" asp-area="" asp-controller="User" asp-action="Index">@Context.Session.GetString("FirstName") @Context.Session.GetString("LastName")</a>
-            </li>
+        <li>
+            <a class="btn btn-outline-secondary" style="left: 10px;" asp-area="" asp-controller="User" asp-action="Index"><i class='fas fa-user-alt'></i>    @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName")</a>
+        </li>
 
-            <div class="dropdown" style="left: 10px;">
-                <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a id="manage" class="nav-link text-dark" href="/user/writeups"> Mine Opskrivelser </a>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Details">Indstillinger</a>
+        <div class="dropdown" style="left: 10px;">
+            <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='fas fa-align-justify'></i></button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a id="manage" class="nav-link text-dark" href="/user/writeups"> Mine Opskrivelser </a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Details">Indstillinger</a>
 
-                </div>
             </div>
-        
+        </div>
+
 
     }
     else
@@ -43,3 +43,7 @@
         </li>
     }
 </ul>
+
+
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
