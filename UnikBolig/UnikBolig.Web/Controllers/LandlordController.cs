@@ -58,14 +58,16 @@ namespace UnikBolig.Web.Controllers
                 Model.UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
                 string Token = HttpContext.Session.GetString("Token");
                 this.estateHandler.Create(Model, Token);
+                ViewBag.Rulesets = this.rulesetHandler.GetOwnedRuleset(Model.UserID, Token);
+                ViewBag.Estates = this.estateHandler.GetOwnedEstates(Model.UserID, Token);
                 ViewBag.Message = "Bolig Oprette";
+                return View("/Views/Landlord/Index.cshtml");
             }
             catch(Exception)
             {
                 ViewBag.Message = "Der er sket en fejl";
+                return View("/Views/Landlord/Estate.cshtml");
             }
-
-            return View("/Views/Landlord/Index.cshtml");
         }
 
         [Route("estates/create")]
