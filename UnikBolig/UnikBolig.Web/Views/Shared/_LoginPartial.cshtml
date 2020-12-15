@@ -19,15 +19,13 @@
         }
 
         <li>
-            <a class="btn btn-outline-secondary" style="left: 10px;" asp-area="" asp-controller="User" asp-action="Index"><i class='fas fa-user-alt'></i>    @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName")</a>
+            <a class="btn btn-outline-secondary" style="left: 10px;" asp-area="" asp-controller="User" asp-action="Details"><i class='fas fa-user-alt'></i>    @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName")</a>
         </li>
 
         <div class="dropdown" style="left: 10px;">
             <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='fas fa-align-justify'></i></button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a id="manage" class="nav-link text-dark" href="/user/writeups"> Mine Opskrivelser </a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Details">Indstillinger</a>
-
             </div>
         </div>
 

@@ -110,7 +110,7 @@ namespace UnikBolig.Web.Controllers
                 HttpContext.Session.SetString("FirstName", usr.FirstName);
                 HttpContext.Session.SetString("LastName", usr.LastName);
                 HttpContext.Session.SetString("Type", usr.Type);
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }catch (Exception e)
             {
                 ViewBag.Message = e.Message;
@@ -142,7 +142,7 @@ namespace UnikBolig.Web.Controllers
                 Model.UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
                 this.handler.CreateUpdateUserDetails(Model, HttpContext.Session.GetString("Token"));
                 ViewBag.Message = "Dine detaljer blev gemt";
-                return View("/Views/User/Index.cshtml");
+                return View("/Views/User/Details.cshtml");
             }catch(Exception e)
             {
                 ViewBag.Message = e.Message;

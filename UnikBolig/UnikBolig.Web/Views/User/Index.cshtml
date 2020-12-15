@@ -1,9 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Http;
 
+
 <div class="col-md-12 justify-content-center align-content-center">
     <div class="col-md-12 justify-content-center align-content-center">
-        <h3 class="text-center"> Hej @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName") </h3>
-        <p class="text-center"> Dette er din profil </p>
         <p class="text-center" style="color: red;"> @ViewBag.Message </p>
         <center>
             @{
@@ -14,4 +13,9 @@
                     </form>
                 }
             }
-      
+
+        </center>
+    </div>
+</div>
+
+    <h2 class="form-group col-md-4"> Hej @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName") </h2>

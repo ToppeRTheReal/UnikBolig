@@ -1,37 +1,60 @@
-﻿@model UnikBolig.Models.UserDetailModel;  
+﻿@model UnikBolig.Models.UserDetailModel;
+@using Microsoft.AspNetCore.Http;
+
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 
+<div class="col-md-12 justify-content-center align-content-center">
+    <div class="col-md-12 justify-content-center align-content-center">
+        <p class="text-center" style="color: red;"> @ViewBag.Message </p>
+        <center>
+            @{
+                if (Context.Session.GetString("Type") == "renter")
+                {
+                    <form method="post" asp-controller="User" asp-action="BecomeLandlord">
+                        <button class="btn btn-primary"> Bliv landlord </button>
+                    </form>
+                }
+            }
+
+        </center>
+    </div>
+</div>
+
+<h2 class="form-group col-md-4">  Hej @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName") </h2>
+<br />
+<br />
+
 <form method="post" asp-controller="User" asp-action="UserDetailsSave">
-    <div class="form-group">
-        <label class="control-label"> Om dig </label>
+    <div class="form-group col-md-4">
+        <label class="control-label"> Beskrivelse </label>
         <textarea class="form-control" rows="6" placeholder="Om" asp-for="About"></textarea>
     </div>
 
-    <div class="form-group form-check">
+    <div class="form-group form-check col-md-4">
         <label class="form-check-label"> Har du en eller flere hunde? </label>
         <input class="form-control" ¨type="checkbox" asp-for="Dog" />
     </div>
 
-    <div class="form-group form-check">
+    <div class="form-group form-check col-md-4">
         <label class="form-check-label"> Har du en eller flere katte? </label>
         <input class="form-control" ¨type="checkbox" asp-for="Cat" />
     </div>
 
-    <div class="form-group form-check">
+    <div class="form-group form-check col-md-4">
         <label class="form-check-label"> Har du et eller flere krybdyr? </label>
         <input class="form-control" ¨type="checkbox" asp-for="Creep" />
     </div>
 
-    <div class="form-group form-check">
+    <div class="form-group form-check col-md-4">
         <label class="form-check-label"> Har du en eller flere fisk? </label>
         <input class="form-control" ¨type="checkbox" asp-for="Fish" />
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-4">
         <input type="submit" value="Gem" class="btn btn-primary" />
     </div>
 
@@ -39,5 +62,5 @@
 </form>
 
 <script>
-   
+
 </script>
