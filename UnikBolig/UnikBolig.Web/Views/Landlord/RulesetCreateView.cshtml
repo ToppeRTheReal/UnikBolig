@@ -3,14 +3,46 @@
 <div class="col-md-12 justify-content-center align-content-center">
     <div class="col-md-6">
         <form asp-controller="Landlord" asp-action="CreateRuleset">
-            <span> Navn på regelsættet <input class="form-control" asp-for="Name" /></span>
 
-            <span> Må der være hund i hustanden? <input class="form-control" type="checkbox" asp-for="Dog" /></span>
-            <span> Må der være kat i hustanden? <input class="form-control" type="checkbox" asp-for="Cat" /></span>
-            <span> Må der være kryb i hustanden? <input class="form-control" type="checkbox" asp-for="Creep" /></span>
-            <span> Må der være fisk i hustanden? <input class="form-control" type="checkbox" asp-for="Fish" /></span>
+            <div class="form-group col-md-6 offset-md-6">
+                <span> Navn på regelsættet <input class="form-control" asp-for="Name" /></span>
+            </div>
 
-            <button class="btn btn-primary btn-block"> Opret regelsæt </button>
+            <div class="form-check col-md-6 offset-md-6">
+                <input class="form-check-input" type="checkbox" asp-for="Dog" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    Må Der være hund i husstanden?
+                </label>
+            </div>
+
+            <div class="form-check col-md-6 offset-md-6">
+                <input class="form-check-input" type="checkbox" asp-for="Cat" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    Må Der være kat i husstanden?
+                </label>
+            </div>
+
+            <div class="form-check col-md-6 offset-md-6">
+                <input class="form-check-input" type="checkbox" asp-for="Creep" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    Må Der være krybdyr i husstanden?
+                </label>
+            </div>
+
+            <div class="form-check col-md-6 offset-md-6">
+                <input class="form-check-input" type="checkbox" asp-for="Fish" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    Må Der være fisk i husstanden?
+                </label>
+            </div>
+
+            <div class="form-group col-md-6 offset-md-6">
+                <button class="btn btn-primary btn-block"> Opret regelsæt </button>
+            </div>
+
+
+
         </form>
     </div>
 </div> 
+
