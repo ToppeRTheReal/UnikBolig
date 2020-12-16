@@ -16,11 +16,15 @@ namespace UnikBolig.Web.Controllers
         IUserHandler handler;
         IHousingHandler HousingHandler;
         IEstateHandler estateHandler;
+    
+
+
         public UserController(IUserHandler handler, IHousingHandler _handler, IEstateHandler _estateHandler)
         {
             this.handler = handler;
             this.HousingHandler = _handler;
             this.estateHandler = _estateHandler;
+ 
         }
         public IActionResult Index()
         {
@@ -65,7 +69,7 @@ namespace UnikBolig.Web.Controllers
                 this.handler.ChangeUserType(UserID, Token, "landlord");
                 HttpContext.Session.SetString("Type", "landlord");
                 ViewBag.Message = "Du er nu landlord";
-                return View("/Views/User/Index.cshtml");
+                return View("/Views/User/Details.cshtml");
             }catch(ArgumentNullException)
             {
                 ViewBag.Message = "Det skete en ukendt fejl prøv at logge ind igen";
@@ -149,5 +153,9 @@ namespace UnikBolig.Web.Controllers
                 return View("/Views/User/Index.cshtml");
             }
         }
+
+       
+
+
     }
 }

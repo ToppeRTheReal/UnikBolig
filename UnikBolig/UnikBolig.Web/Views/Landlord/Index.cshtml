@@ -1,10 +1,8 @@
-﻿<h1> Se dine regelsæt </h1>
-<h3> @ViewBag.Message </h3>
-
+﻿<h3> @ViewBag.Message</h3>
+<h3>Dine Regelsæt</h3>
 @{
     foreach (UnikBolig.Models.EstateRulesetModel item in ViewBag.Rulesets)
     {
-
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
@@ -18,17 +16,25 @@
                 </div>
             </div>
         </div>
-    }
-}
 
-@{
+
+
+    }
+
+    <h3>Dine boliger</h3>
     foreach (UnikBolig.Models.EstateModel item in ViewBag.Estates)
     {
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
+                        <label><p>@item.Name</p></label>
                         <p>@item.Name</p>
+                        <p>@item.Description</p>
+                        <p>@item.Size</p>
+                        <p>@item.StreetName</p>
+                        <p>@item.HouseNumber</p>
+                        <p>@item.Postal</p>
                     </div>
                 </div>
             </div>
