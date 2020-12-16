@@ -1,18 +1,39 @@
-﻿<h1> Landlord side </h1>
+﻿<h1> Se dine regelsæt </h1>
 <h3> @ViewBag.Message </h3>
 
 @{
-    foreach(UnikBolig.Models.EstateRulesetModel item in ViewBag.Rulesets)
+    foreach (UnikBolig.Models.EstateRulesetModel item in ViewBag.Rulesets)
     {
-        <p> @item.Name </p>
-        <p> @item.Dog </p>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p>Regelsæt navn: @item.Name</p>
+                        <p>Er det tilladt at have hunde: @item.Dog</p>
+                        <p>Er det tilladt at have katte: @item.Cat</p>
+                        <p>Er det tilladt at have krybdyr: @item.Creep</p>
+                        <p>Er det tilladt at have fisk: @item.Fish</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 }
 
 @{
-    foreach(UnikBolig.Models.EstateModel item in ViewBag.Estates)
+    foreach (UnikBolig.Models.EstateModel item in ViewBag.Estates)
     {
-        <p> @item.Name </p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p>@item.Name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     }
 
 }
