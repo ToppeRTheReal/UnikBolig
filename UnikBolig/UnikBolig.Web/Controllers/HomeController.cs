@@ -13,7 +13,7 @@ namespace Unik.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        ILogger<HomeController> _logger;
         IUserHandler handler;
         IEstateHandler estateHandler;
 
@@ -28,7 +28,8 @@ namespace Unik.Controllers
         [Route("/")]
         public IActionResult Index()
         {
-            return View();
+            var Estates = this.estateHandler.GetAll();
+            return View("/Views/Home/Index.cshtml", Estates);
         }
 
         [Route("bolig/{ID}")]
