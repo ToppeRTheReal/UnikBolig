@@ -43,6 +43,10 @@ namespace UnikBolig.Application
             if (Estate == null)
                 throw new Exception("Estate not found");
 
+            var listCheck = this.Context.WaitingList.Where(x => x.UserID == list.UserID && x.EstateID == list.EstateID).FirstOrDefault();
+            if (listCheck != null)
+                throw new Exception("Du er allerede skrevet op til denne bolig");
+
             this.Context.WaitingList.Add(list);
             this.Context.SaveChanges();
         }

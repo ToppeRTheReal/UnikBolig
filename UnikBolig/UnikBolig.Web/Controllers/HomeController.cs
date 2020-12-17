@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 using Unik.Models;
 using UnikBolig.Models;
 using UnikBolig.Application;
+using Microsoft.AspNetCore.Http;
+
 namespace Unik.Controllers
 {
     public class HomeController : Controller
@@ -35,7 +37,8 @@ namespace Unik.Controllers
         [Route("bolig/{ID}")]
         public IActionResult Estate([FromRoute] Guid ID)
         {
-            var response = this.estateHandler.GetAll();
+            var response = this.estateHandler.GetByID(ID);
+            HttpContext.Session.SetString("LastEstateViewed", ID.ToString());
             return View(response);
         }
 

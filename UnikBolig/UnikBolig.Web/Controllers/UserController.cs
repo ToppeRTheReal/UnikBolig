@@ -154,8 +154,28 @@ namespace UnikBolig.Web.Controllers
             }
         }
 
-       
+       [HttpPost]
+       [Route("WriteUpPost")]
+       public IActionResult WriteUp()
+       {
+            Guid EstateID = Guid.Parse(HttpContext.Session.GetString("LastEstateViewed"));
+            try
+            {
+                Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                string Token = HttpContext.Session.GetString("Token");
 
+                WaitingList list = new WaitingList();
+                list.UserID = UserID;
+                list.EstateID = EstateID;
 
+                this.HousingHandler.Create(list, Token);
+                ViewBag.Message = "Du er nu skrevet op til denne bolig";
+            }catch(Exception e)
+            {
+                ViewBag.Message = "Der skete en fejl, prøv igen";
+            }
+
+            return View("/Views/Home/Estate.cshtml", this.estateHandler.GetByID(EstateID));
+       }
     }
 }
