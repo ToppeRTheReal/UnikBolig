@@ -98,14 +98,20 @@ namespace UnikBolig.Application
                 UserWithPoints user = new UserWithPoints();
                 var UserEntity = this.Context.Users.Where(x => x.ID == item.UserID).FirstOrDefault();
                 UserDetailModel userDetails = this.Context.UserDetails.Where(x => x.UserID == item.UserID).FirstOrDefault();
-                if (ruleset.Dog == userDetails.Dog)
-                    user.Points++;
-                if (ruleset.Cat == userDetails.Cat)
-                    user.Points++;
-                if (ruleset.Fish == userDetails.Fish)
-                    user.Points++;
-                if (ruleset.Creep == userDetails.Creep)
-                    user.Points++;
+                if(userDetails == null)
+                {
+                    user.Points = 0;
+                }else
+                {
+                    if (ruleset.Dog == userDetails.Dog)
+                        user.Points++;
+                    if (ruleset.Cat == userDetails.Cat)
+                        user.Points++;
+                    if (ruleset.Fish == userDetails.Fish)
+                        user.Points++;
+                    if (ruleset.Creep == userDetails.Creep)
+                        user.Points++;
+                }
 
                 user.FirstName = UserEntity.FirstName;
                 user.LastName = UserEntity.LastName;
