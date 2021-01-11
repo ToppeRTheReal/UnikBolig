@@ -1,0 +1,78 @@
+USE UnikBolig;
+
+if not exists (select * from sysobjects where name='Users' and xtype='U')
+    CREATE TABLE Users  (
+        ID UNIQUEIDENTIFIER PRIMARY KEY,
+        FirstName VARCHAR(MAX) NOT NULL,
+        LastName VARCHAR(MAX) NOT NULL,
+        Email VARCHAR(MAX) NOT NULL,
+        Phone VARCHAR(MAX)  NOT NULL,
+        Password VARCHAR(MAX) NOT NULL,
+        Type VARCHAR(MAX) NOT NULL,
+        RowVersion TIMESTAMP NOT NULL
+    )
+
+if not exists (select * from sysobjects where name='Tokens' and xtype='U')
+    CREATE TABLE Tokens(
+        ID UNIQUEIDENTIFIER PRIMARY KEY,
+        UserID UNIQUEIDENTIFIER NOT NULL,
+        Token VARCHAR(MAX) NOT NULL,
+        RowVersion TIMESTAMP NOT NULL,
+        FOREIGN KEY (UserID) REFERENCES Users(ID)
+    )
+
+if not exists (select * from sysobjects where name='UserDetails' and xtype='U')
+    CREATE TABLE UserDetails(
+        ID UNIQUEIDENTIFIER PRIMARY KEY,
+        UserID UNIQUEIDENTIFIER NOT NULL,
+        About VARCHAR(MAX) NOT NULL,
+        Dog BIT not null,
+        Cat BIT NOT NULL,
+        Creep BIT NOT NULL,
+        Fish BIT NOT NULL,
+        RowVersion TIMESTAMP NOT NULL,
+        FOREIGN KEY (UserID) REFERENCES Users(ID)
+    )
+
+if not exists (select * from sysobjects where name='Rulesets' and xtype='U')
+    CREATE TABLE Rulesets (
+        ID UNIQUEIDENTIFIER PRIMARY KEY,
+        UserID UNIQUEIDENTIFIER NOT NULL,
+        Name VARCHAR(MAX) NOT NULL,
+        Dog BIT NOT NULL,
+        Cat BIT NOT NULL,
+        Creep BIT NOT NULL,
+        Fish BIT NOT NULL,
+        RowVersion TIMESTAMP NOT NULL,
+        FOREIGN KEY (UserID) REFERENCES Users(ID)
+    )
+
+if not exists (select * from sysobjects where name='Estates' and xtype='U')
+    CREATE TABLE Estates (
+        ID UNIQUEIDENTIFIER PRIMARY KEY,
+        UserID UNIQUEIDENTIFIER NOT NULL,
+        RulesetID UNIQUEIDENTIFIER NOT NULL,
+        Name VARCHAR(MAX) NOT NULL,
+        Description VARCHAR(MAX) NOT NULL,
+        Size INT NOT NULL,
+        StreetName VARCHAR(MAX) NOT NULL,
+        HouseNumber int NOT NULL,
+        Floor int NOT NULL,
+        Postal int NOT NULL,
+        ImgUrl VARCHAR(MAX) NOT NULL,
+        CurrentRenter UNIQUEIDENTIFIER NULL,
+        IsRented BIT NOT NULL,
+        RowVersion TIMESTAMP NOT NULL,
+        FOREIGN KEY (RulesetID) REFERENCES Rulesets(ID),
+        FOREIGN KEY (UserID) REFERENCES Users(ID),
+        FOREIGN KEY (CurrentRenter) REFERENCES Users(ID)
+    )
+
+if not exists (select * from sysobjects where name = 'WaitingList' and xtype='U')
+    CREATE TABLE WaitingList (
+        ID UNIQUEIDENTIFIER PRIMARY KEY,
+        UserID UNIQUEIDENTIFIER NOT NULL,
+        EstateID UNIQUEIDENTIFIER NOT NULL,
+        FOREIGN KEY (UserID) REFERENCES Users(ID),
+        FOREIGN KEY (EstateID) REFERENCES Estates(ID)
+    )

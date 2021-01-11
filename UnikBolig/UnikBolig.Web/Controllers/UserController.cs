@@ -172,7 +172,7 @@ namespace UnikBolig.Web.Controllers
                 ViewBag.Message = "Du er nu skrevet op til denne bolig";
             }catch(Exception e)
             {
-                ViewBag.Message = "Der skete en fejl, prøv igen";
+                ViewBag.Message = e.Message;
             }
 
             return View("/Views/Home/Estate.cshtml", this.estateHandler.GetByID(EstateID));

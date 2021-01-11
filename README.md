@@ -9,3 +9,4 @@ $ docker run --publish internal-port:external-port --detach --name name_for_dock
 ```
 
 ### use -i for interactive console
+### Run .sql file to setup DB
