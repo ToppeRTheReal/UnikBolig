@@ -13,7 +13,7 @@
                     <div class="col-md-2"> @ViewBag.User.FirstName @ViewBag.User.LastName </div>
                     <div class="col-md-2"> @ViewBag.User.Email </div>
                     <div class="col-md-2"> @ViewBag.User.Phone </div>
-                    <div class="col-md-2"> <button class="btn btn-danger"> Flyt ud </button> </div>
+                    <div class="col-md-2"> <a href="/landlord/moveout/@ViewBag.EstateID"> <button class="btn btn-danger"> Flyt ud </button> </a> </div>
                 </div>
             </div>
         }else
@@ -26,7 +26,7 @@
                     <div class="col-md-2"> <span> @item.Phone </span> </div>
                     <div class="col-md-2"> <span> @item.Points </span> </div>
                     <div class="col-md-2"> <span> @item.About </span> </div>
-                    <div> <button class="btn btn-primary"> Flyt ind </button> </div>
+                    <div> <a href="/landlord/movein/@item.EstateID/@item.ID"> <button class="btn btn-primary"> Flyt ind </button> </a></div>
                 </div>
             }
         }

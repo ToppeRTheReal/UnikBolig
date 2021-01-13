@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using UnikBolig.Application;
 using UnikBolig.Models;
@@ -168,6 +169,7 @@ namespace UnikBolig.Web.Controllers
                 }else {
                     var usr = this.userHandler.GetByID((Guid) estate.CurrentRenter);
                     ViewBag.User = usr;
+                    ViewBag.EstateID = estate.ID;
                 }
                 
             }catch(Exception e)
@@ -177,5 +179,46 @@ namespace UnikBolig.Web.Controllers
 
             return View("/Views/Landlord/Qualifiers.cshtml");
         }
+
+        [HttpGet]
+        [Route("movein/{estateID}/{UserID}")]
+        public IActionResult MoveIn([FromRoute] Guid estateID, Guid UserID)
+        {
+            try
+            {
+                Guid Owner = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                this.handler.MoveIn(Owner, HttpContext.Session.GetString("Token"), UserID, estateID);
+                ViewBag.Message = "Brugeren er nu flyttet ind";
+            }catch(Exception e)
+            {
+                ViewBag.Message = e.Message;
+            }
+
+            return View("/Views/User/Index.cshtml");
+        }
+
+        [HttpGet]
+        [Route("moveout/{estateID}")]
+        public IActionResult MoveOut([FromRoute] Guid estateID)
+        {
+            try
+            {
+                Guid Owner = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                this.handler.MoveOut(Owner, HttpContext.Session.GetString("Token"), estateID);
+                ViewBag.Message = "Brugeren er nu flyttet ud, og enheden står nu til leje igen";
+            }catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+            }
+
+            return View("/Views/User/Index.cshtml");
+        }
+    }
+    public class MoveInRequest
+    {
+        public Guid EstateID { get; set; }
+        public Guid OwnerID { get; set; }
+        public Guid UserID { get; set; }
+        public string Token { get; set; }
     }
 }

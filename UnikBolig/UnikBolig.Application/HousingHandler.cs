@@ -96,6 +96,7 @@ namespace UnikBolig.Application
             foreach (var item in waitingListItems)
             {
                 UserWithPoints user = new UserWithPoints();
+                user.EstateID = estate.ID;
                 var UserEntity = this.Context.Users.Where(x => x.ID == item.UserID).FirstOrDefault();
                 UserDetailModel userDetails = this.Context.UserDetails.Where(x => x.UserID == item.UserID).FirstOrDefault();
                 if(userDetails == null)
@@ -115,6 +116,7 @@ namespace UnikBolig.Application
                     user.About = userDetails.About;
                 }
 
+                user.ID = item.UserID;
                 user.FirstName = UserEntity.FirstName;
                 user.LastName = UserEntity.LastName;
                 user.Email = UserEntity.Email;
@@ -166,5 +168,6 @@ namespace UnikBolig.Application
     {
         public int Points { get; set; }
         public string About { get; set; }
+        public Guid EstateID { get; set; }
     }
 }
