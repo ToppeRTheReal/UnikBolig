@@ -10,7 +10,7 @@ namespace UnikBolig.Application
     {
         void Create(WaitingList list, string Token);
         List<EstateModel> GetAllHousingsWrittenUpFor(Guid UserID, string Token);
-        List<HousingHandler.UserWithPoints> GetHousingQualifiers(Guid EstateID, Guid UserID, string Token);
+        List<UserWithPoints> GetHousingQualifiers(Guid EstateID, Guid UserID, string Token);
         public void MoveIn(Guid EstateOwnerID, string EstateOwnerToken, Guid UserToMoveInID, Guid EstateID);
         public void MoveOut(Guid EstateOwnerID, string Token, Guid EstateID);
         void Remove(Guid UserID, string Token, Guid EstateID);
@@ -101,6 +101,7 @@ namespace UnikBolig.Application
                 if(userDetails == null)
                 {
                     user.Points = 0;
+                    user.About = "Brugeren har ikke skrevet om sig selv";
                 }else
                 {
                     if (ruleset.Dog == userDetails.Dog)
@@ -111,6 +112,7 @@ namespace UnikBolig.Application
                         user.Points++;
                     if (ruleset.Creep == userDetails.Creep)
                         user.Points++;
+                    user.About = userDetails.About;
                 }
 
                 user.FirstName = UserEntity.FirstName;
@@ -118,7 +120,6 @@ namespace UnikBolig.Application
                 user.Email = UserEntity.Email;
                 user.Phone = UserEntity.Phone;
                 user.Type = UserEntity.Type;
-                user.About = userDetails.About;
 
                 response.Add(user);
             }
@@ -160,11 +161,10 @@ namespace UnikBolig.Application
             Estate.CurrentRenter = null;
             this.Context.SaveChanges();
         }
-
-        public class UserWithPoints : UserModel
-        {
-            public int Points { get; set; }
-            public string About { get; set; }
-        }
+    }
+    public class UserWithPoints : UserModel
+    {
+        public int Points { get; set; }
+        public string About { get; set; }
     }
 }

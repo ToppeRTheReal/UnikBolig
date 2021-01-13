@@ -108,7 +108,7 @@ namespace UnikBolig.Web.Controllers
             try
             {
                 var token = this.handler.Login(Model.Email, Model.Password);
-                var usr = this.handler.GetByID(token.UserID, token.Token);
+                var usr = this.handler.GetByID(token.UserID);
                 HttpContext.Session.SetString("UserID", token.UserID.ToString());
                 HttpContext.Session.SetString("Token", token.Token);
                 HttpContext.Session.SetString("FirstName", usr.FirstName);

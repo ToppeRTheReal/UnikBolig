@@ -13,15 +13,17 @@ namespace UnikBolig.Web.Controllers
     public class LandlordController : Controller
     {
         IEstateHandler estateHandler;
+        IHousingHandler handler;
         IUserHandler userHandler;
         IRulesetHandler rulesetHandler;
 
-        public LandlordController(IEstateHandler _estateHandler, IUserHandler uhandler, IRulesetHandler rhandler)
+        public LandlordController(IEstateHandler _estateHandler, IUserHandler uhandler, IRulesetHandler rhandler, IHousingHandler lHandler)
         {
            
             this.estateHandler = _estateHandler;
             this.userHandler = uhandler;
             this.rulesetHandler = rhandler;
+            this.handler = lHandler;
         }
 
         [Route("/landlord")]
@@ -32,7 +34,7 @@ namespace UnikBolig.Web.Controllers
                 Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
                 string Token = HttpContext.Session.GetString("Token");
 
-                var user = this.userHandler.GetByID(UserID, Token);
+                var user = this.userHandler.GetByID(UserID);
 
                 if (user.Type != "landlord")
                     throw new Exception("Der skete en fejl, prøv at logge ind igen");
@@ -95,7 +97,7 @@ namespace UnikBolig.Web.Controllers
                 Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
                 string Token = HttpContext.Session.GetString("Token");
 
-                var user = this.userHandler.GetByID(UserID, Token);
+                var user = this.userHandler.GetByID(UserID);
 
                 if (user.Type != "landlord")
                     throw new Exception("Der skete en fejl, prøv at logge ind igen");
@@ -139,7 +141,7 @@ namespace UnikBolig.Web.Controllers
                 Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
                 string Token = HttpContext.Session.GetString("Token");
 
-                var user = this.userHandler.GetByID(UserID, Token);
+                var user = this.userHandler.GetByID(UserID);
 
                 if (user.Type != "landlord")
                     throw new Exception("Der skete en fejl, prøv at logge ind igen");
@@ -151,6 +153,29 @@ namespace UnikBolig.Web.Controllers
                 ViewBag.Message = e.Message;
                 return View("/Views/Home/Login.cshtml");
             }
+        }
+
+        [Route("qualifiers/{ID}")]
+        public IActionResult GetQualifiers([FromRoute] Guid ID) {
+            try
+            {
+                var estate = this.estateHandler.GetByID(ID);
+                Guid UserID = Guid.Parse(HttpContext.Session.GetString("UserID"));
+                string token = HttpContext.Session.GetString("Token");
+
+                if(!estate.IsRented){
+                    ViewBag.Qualifiers = this.handler.GetHousingQualifiers(ID, UserID, token);
+                }else {
+                    var usr = this.userHandler.GetByID((Guid) estate.CurrentRenter);
+                    ViewBag.User = usr;
+                }
+                
+            }catch(Exception e)
+            {
+                ViewBag.Message = e.Message;
+            }
+
+            return View("/Views/Landlord/Qualifiers.cshtml");
         }
     }
 }
